@@ -8,7 +8,7 @@ import rehypeKatex from 'rehype-katex'
 const config: Config = {
   title: 'Unforgettable Docs',
   tagline:
-    'Learn to use a privacy-first social protocol, which seamlessly combines various identity standards and forms a private but verifiable social graph.',
+    'User-friendly recovery solution based on ERC-7947 for secure, seedless smart account recovery with visual keys(face, objects), short password, and PoW challenge.',
   url: process.env.URL || 'http://localhost:3000',
   baseUrl: process.env.BASE_URL || '/',
   onBrokenLinks: 'throw',
