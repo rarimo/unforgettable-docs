@@ -1,0 +1,72 @@
+{
+  "name": "rarimo-docs",
+  "version": "5.23.0",
+  "private": true,
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "gen-api-docs": "docusaurus gen-api-docs all",
+    "swizzle": "docusaurus swizzle",
+    "deploy": "docusaurus deploy",
+    "clear": "docusaurus clear",
+    "serve": "docusaurus serve",
+    "write-translations": "docusaurus write-translations",
+    "write-heading-ids": "docusaurus write-heading-ids",
+    "lint": "eslint .",
+    "typecheck": "tsc",
+    "version": "rlx changelog release $(node -p \"require('./package.json').version\") && git add ."
+  },
+  "dependencies": {
+    "@docusaurus/core": "^3.7.0",
+    "@docusaurus/plugin-ideal-image": "3.8.1",
+    "@docusaurus/preset-classic": "^3.7.0",
+    "@docusaurus/remark-plugin-npm2yarn": "^3.7.0",
+    "@mdx-js/react": "^3.0.0",
+    "docusaurus-plugin-llms": "^0.1.4",
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-medium-image-zoom": "4.4.3",
+    "redocusaurus": "^2.0.0",
+    "rehype-katex": "6",
+    "remark-math": "5",
+    "sharp": "0.33.5"
+  },
+  "devDependencies": {
+    "@docusaurus/eslint-plugin": "^3.7.0",
+    "@docusaurus/module-type-aliases": "^3.7.0",
+    "@docusaurus/tsconfig": "^3.7.0",
+    "@napalmpapalam/rlx": "^0.4.1",
+    "@typescript-eslint/eslint-plugin": "^5.40.1",
+    "@typescript-eslint/parser": "^5.40.1",
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-markdown": "^3.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.31.10",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
+    "prettier": "^2.7.1",
+    "typescript": "^5.3.3"
+  },
+  "browserslist": {
+    "production": [
+      ">0.5%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "engines": {
+    "node": ">=18.11"
+  },
+  "resolutions": {
+    "axios": "^0.28.0",
+    "webpack-dev-server": "^5.2.1",
+    "sharp": "0.33.5"
+  }
+}
