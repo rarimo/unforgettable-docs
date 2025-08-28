@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - 'main'
-      - 'devops/ci'
+      - 'devops/cd'
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}:${{github.sha}}
@@ -75,8 +75,8 @@ jobs:
             location: ${{ env.GKE_ZONE }}
             namespace: unforgettable-docs-staging
 
-        # - name: Deploy to GKE
-        #   run: |
-        #     kubectl get pods -n unforgettable-docs-staging
-        #     helm upgrade -i "unforgettable-docs" ".helm" --set global.IngressDomain=staging.docs.unforgettable.app --set "image.repository=ghcr.io/${GITHUB_REPOSITORY}" --set "image.tag=${GITHUB_SHA}"  --namespace unforgettable-docs-staging
+        - name: Deploy to GKE
+          run: |
+            kubectl get pods -n unforgettable-docs-staging
+            helm upgrade -i "unforgettable-docs" ".helm" --set global.IngressDomain=staging.docs.unforgettable.app --set "image.repository=ghcr.io/${GITHUB_REPOSITORY}" --set "image.tag=${GITHUB_SHA}"  --namespace unforgettable-docs-staging
 

@@ -6,7 +6,7 @@ on:
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}:${{github.ref_name}}
   URL: "https://docs.unforgettable.app"
-  DOMAIN: staging.docs.unforgettable.app
+  DOMAIN: docs.unforgettable.app
   BASE_URL: "/"
   STAGING: "false"
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
