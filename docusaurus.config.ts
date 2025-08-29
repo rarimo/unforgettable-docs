@@ -54,8 +54,8 @@ const config: Config = {
     navbar: {
       logo: {
         alt: 'Rarimo Logo',
-        src: 'img/logo-black.svg',
-        srcDark: 'img/logo-white.svg',
+        src: 'img/logo-black.png',
+        srcDark: 'img/logo-white.png',
       },
       items: [
         {
@@ -83,8 +83,8 @@ const config: Config = {
           items: [
             {
               html: `
-                  <img class="footer__logo" src="/img/logo-white.svg" alt="Rarimo Logo"/>
-                  <img class="footer__logo footer__logo--black" src="/img/logo-black.svg" alt="Rarimo Logo"/>
+                  <img class="footer__logo" src="/img/logo-white.png" alt="Rarimo Logo"/>
+                  <img class="footer__logo footer__logo--black" src="/img/logo-black.png" alt="Rarimo Logo"/>
                 `,
             },
             {
