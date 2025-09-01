@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - 'main'
-      - 'devops/ci'
+      - 'devops/cd'
 
 env:
   IMAGE_NAME: ghcr.io/${{ github.repository }}:${{github.sha}}
