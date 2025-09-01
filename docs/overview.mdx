@@ -1,8 +1,80 @@
 ---
-title: "What is Unforgettable Recovery"
+title: "What is Unforgettable Recovery?"
 slug: /
-sidebar_label: Unforgettable Recovery
+sidebar_label: Overview
 ---
 
-## What is Unforgettable Recovery
+import OutLink from "@site/src/components/OutLink";
+import IdealImage from '@site/src/components/IdealImage';
 
+# What is Unforgettable Recovery?
+
+**TL;DR:** Unforgettable Recovery uses account abstraction and visual keys to manage EVM wallets, so you never have to store or remember seed phrases.
+
+## Why Unforgettable Recovery?
+
+- **No seed phrases:** Users authenticate leveraging visual memory (their face, a favorite object, etc.) instead of managing 12–24‑word phrases.
+- **Self-custodial and private:** The cryptographic secret is re-derived on the client device; only a public key and additional helping data are stored in the blockchain or on the app server. Raw biometrics or key material never leave the device.
+- **Multi‑factor auth:** Combine visuals (e.g., face + object) and add a short password or proof‑of‑work (PoW) step to reach the full 112‑bit security target.
+- **Smooth onboarding:** First‑time users set up in seconds. Ideal for dApps that target mainstream audiences.
+- **Phishing‑resistant:** There is nothing to type or copy, eliminating most social‑engineering vectors.
+
+## Tech overview
+
+Unforgettable Recovery relies on a novel cryptographic primitive called **fuzzy extractors**, which convert “noisy” biometric/visual data into a stable, private key that can be reproduced from a close‑enough reading of the same object. Security is layered by combining factors (e.g., face + object) and strengthened further with a password or a proof-of-work challenge.
+
+### Security assumptions
+
+To achieve a 112‑bit security baseline, Unforgettable fuses ≈46 bits of entropy extracted from a face‑plus‑object pair with an additional 66 bits contributed by either a short password alone or a shorter password reinforced by an optional 2¹⁶‑space proof‑of‑work challenge.
+
+| Factors | Entropy usable today |
+| --- | --- |
+| Face (FaceNet‑128, 2‑bit quant.) | ≈ 11–26 bits |
+| Any generic object | ≈ 20 bits |
+| Face + object | ≈ 46 bits |
+| Password to fill the gap | 11 random ASCII chars (≈ 66 bits) |
+| Optional PoW (2¹⁶ space, Argon2id ≈ 5 try/s) | 3 h of brute force to receive additional 16 and resulting 128 bits of security |
+
+Further improvements are being researched:
+
+- **Model upgrades:** Moving to 512‑D face embeddings and “specific‑object” extractors is expected to yield 40-60 bits per object and ≥ 70 bits from a face + object pair.
+- **Shorter secrets:** With 70 visual bits, the password can drop to 7 random characters, or 5 with the same PoW range, while preserving 112‑bit security.
+- **New modalities:** Voice prints, 3-D scans and other high‑entropy sources are being researched to reduce user effort further.
+
+### Registration and recovery flows
+
+To set up an Unforgettable smart-contract wallet we need to:
+
+1. Create a standard externally owned account (EOA).
+2. Delegate the EOA to the Unforgettable smart contract via a type‑4 *set‑code* transaction.
+3. Pay the annual subscription fee to the Subscription contract.
+4. Grant the Unforgettable contract permission to use the private key derived from Unforgettable’s security challenges.
+
+Once the smart-contract wallet is ready, all the user needs to do to restore access to it is:
+
+- Make sure the annual fee was paid;
+- Derive the Unforgettable private key from the security challenges;
+
+<IdealImage img={require('/img/recovering-wallet-flow.png')} alt="Unforgettable Recovery flow" />
+
+## User flow
+
+Example of Unforgettable Recovery flow is shown in the demo below:
+
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/uZrqQsSihZE"
+  title="YouTube Short - Unforgettable Recovery Demo"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
+
+## Subscription
+
+The subscription is activated at setup, but the fee can be only charged when you actually invoke the recovery flow.
+
+## Conclusion
+
+Unforgettable Recovery offers an alternative to seed phrases with visual keys derived via fuzzy extractors, combining factors (face + object) with a short password and a PoW  challenge to reach a ≥ 112-bit security baseline without exposing biometric data. Built on account abstraction, it enables fast onboarding and straightforward recovery of EVM smart-contract wallets while remaining self-custodial, private and phishing-resistant.
