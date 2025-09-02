@@ -1,0 +1,26 @@
+---
+title: "Integrate Unforgettable Recovery into your smart-contract wallet"
+slug: /for-wallet-devs
+sidebar_label: For wallet developers
+description: "Learn about integrating Unforgettable Recovery into your smart-contract wallet."
+---
+
+import OutLink from "@site/src/components/OutLink";
+import IdealImage from '@site/src/components/IdealImage';
+
+# Integrating Unforgettable Recovery into your wallet
+
+:::info
+Unforgettable is working on an SDK for smart-contract wallets to easily integrate recovery features. If you are a wallet developer interested in integrating Unforgettable Recovery, please reach out to us on <OutLink href= "https://t.me/+pWugh5xgDiE3Y2Jk">Telegram</OutLink>.
+:::
+
+The main components of the SDK will include:
+
+- Unforgettable DApp responsible for collecting user data and managing recovery processes. It can be integrated into your wallet as a webview or a separate app.
+- Smart-contracts that can be integrated into your wallet's smart-contract codebase. These contracts will handle interactions with the Unforgettable DApp and manage recovery logic.
+
+On the smart-contract level, the sign up and recovery flows will look like this:
+
+<IdealImage img={require('/img/adding-provider-flow.jpg')} alt="Adding recovery provider flow" />
+
+<IdealImage img={require('/img/account-recovery-flow.jpg')} alt="Account recovery flow" />

@@ -9,9 +9,9 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Unforgettable for Bitcoin',
+      label: 'Unforgettable Bitcoin',
       id: 'bitcoin',
-    }
+    },
 
     // {
     //   type: 'html',
@@ -19,6 +19,16 @@ const sidebars: SidebarsConfig = {
     //     <div class="menu__splitter"></div>
     //   `,
     // },
+    {
+      type: 'doc',
+      label: 'For wallet developers',
+      id: 'for-wallet-devs',
+    },
+    {
+      type: 'doc',
+      label: 'Smart contracts',
+      id: 'smart-contracts',
+    }
     // {
     //   type: 'html',
     //   value: `
