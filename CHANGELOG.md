@@ -10,3 +10,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Docusaurus scaffolding;
 - Product overview;
+- Unforgettable Recovery for Bitcoin documentation;

@@ -1,0 +1,36 @@
+---
+title: "Unforgettable for Bitcoin"
+slug: /unforgettable-recovery-for-bitcoin-wallets
+sidebar_label: Unforgettable for Bitcoin
+description: "Learn about Unforgettable Recovery for Bitcoin wallets."
+---
+
+import OutLink from "@site/src/components/OutLink";
+import IdealImage from '@site/src/components/IdealImage';
+
+# Unforgettable for Bitcoin
+
+Unforgettable Recovery is also available for Bitcoin wallets. It allows you to recover your Bitcoin wallet using using your face, a photo of a personal object, such as a favorite mug or a pet, short password and an optional PoW challenge. This method eliminates the need for seed phrases, making wallet recovery more user-friendly.
+
+For Taproot addresses, Unforgettable Recovery is implemented by embedding an alternative spending path that requires the signature (by the secret key derived from the object) and timelock. Let's look at both paths:
+
+* **Key-path:** This is the default method, allowing you to spend Bitcoin using your regular, full 32-byte secret key, typically used for everyday transactions.
+* **Recovery path:** This serves as a backup method in case you lose your seed phrase. The spend key for this path is derived from:
+  * Fuzzy extractor output (*H(IMG)*) represents a hashed version of the original image.
+  * A short random nonce (*r*).
+  * A static bitmask (*m*).
+
+This recovery path includes a timelock, enhancing security (see below).
+
+If you lose your private key, recovery involves the following steps:
+
+1. **Scan the original object again** to recreate the hash (*H(IMG)*).
+2. **Recover the nonce (*r*)**. Knowing *H(IMG)* and *m*, we can recover the nonce *r* using Pollard's rho algorithm for discrete logarithms, which is achievable on consumer hardware in a reasonable time due to the small nonce length.
+3. **Derive the recovery key** from the values *H(IMG)*, *r*, and the known mask *m*.
+4. **Transfer funds** securely to a new wallet.
+
+Without the *H(IMG)* value, attackers face brute-forcing a 180-bit key, an economically impractical task. Additionally, the timelock provides extra protection against such attacks.
+
+## Can I use it now?
+
+Unforgettable Recovery for Bitcoin is not production grade yet. However, you can contact us on <OutLink href= "https://t.me/+pWugh5xgDiE3Y2Jk">Telegram</OutLink> to discuss your use case and get early access to the solution.

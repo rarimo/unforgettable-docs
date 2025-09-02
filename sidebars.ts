@@ -7,6 +7,11 @@ const sidebars: SidebarsConfig = {
       label: 'What is Unforgettable.?',
       id: 'overview',
     },
+    {
+      type: 'doc',
+      label: 'Unforgettable for Bitcoin',
+      id: 'bitcoin',
+    }
 
     // {
     //   type: 'html',
