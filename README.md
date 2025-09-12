@@ -74,7 +74,7 @@ The maintainers will review your pull request and may request changes or provide
 
 ## Changelog
 
-For the changelog, see [CHANGELOG.md](CHANGELOG).
+For the changelog, see [CHANGELOG.md](CHANGELOG.md).
 
 ## License
 
