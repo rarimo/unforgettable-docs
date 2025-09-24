@@ -7,28 +7,28 @@ const sidebars: SidebarsConfig = {
       label: 'What is Unforgettable.?',
       id: 'overview',
     },
-    {
-      type: 'doc',
-      label: 'Unforgettable Bitcoin',
-      id: 'bitcoin',
-    },
 
+    // {
+    //   type: 'doc',
+    //   label: 'Unforgettable Bitcoin',
+    //   id: 'bitcoin',
+    // },
     // {
     //   type: 'html',
     //   value: `
     //     <div class="menu__splitter"></div>
     //   `,
     // },
-    {
-      type: 'doc',
-      label: 'For wallet developers',
-      id: 'for-wallet-devs',
-    },
-    {
-      type: 'doc',
-      label: 'Smart contracts',
-      id: 'smart-contracts',
-    }
+    // {
+    //   type: 'doc',
+    //   label: 'For wallet developers',
+    //   id: 'for-wallet-devs',
+    // },
+    // {
+    //   type: 'doc',
+    //   label: 'Smart contracts',
+    //   id: 'smart-contracts',
+    // }
     // {
     //   type: 'html',
     //   value: `
