@@ -124,14 +124,14 @@ const config: Config = {
         },
       ],
     },
-    algolia: {
-      apiKey: '18092da45b925ef9b6428ca707da2165',
-      indexName: 'rarimo',
-      appId: '4PAZA7JWOP',
-      contextualSearch: false,
-      searchPagePath: 'search',
-      debug: true,
-    },
+    // algolia: {
+    //   apiKey: '18092da45b925ef9b6428ca707da2165',
+    //   indexName: 'rarimo',
+    //   appId: '4PAZA7JWOP',
+    //   contextualSearch: false,
+    //   searchPagePath: 'search',
+    //   debug: true,
+    // },
     prism: {
       theme: themes.github,
       darkTheme: themes.dracula,
