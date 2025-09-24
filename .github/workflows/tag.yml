@@ -74,7 +74,7 @@ jobs:
             location: ${{ env.GKE_ZONE }}
             namespace: unforgettable-docs-prod
 
-        # - name: Deploy to GKE
-        #   run: |
-        #     kubectl get pods -n unforgettable-docs-prod
-        #     helm upgrade -i "unforgettable-docs" ".helm" --set global.IngressDomain=docs.unforgettable.app --set "image.repository=ghcr.io/${GITHUB_REPOSITORY}" --set "image.tag=${GITHUB_REF_NAME}"  --namespace unforgettable-docs-prod
+        - name: Deploy to GKE
+          run: |
+            kubectl get pods -n unforgettable-docs-prod
+            helm upgrade -i "unforgettable-docs" ".helm" --set global.IngressDomain=docs.unforgettable.app --set "image.repository=ghcr.io/${GITHUB_REPOSITORY}" --set "image.tag=${GITHUB_REF_NAME}"  --namespace unforgettable-docs-prod
