@@ -28,12 +28,15 @@ Unforgettable Recovery relies on a novel cryptographic primitive called **fuzzy 
 To achieve a 112‑bit security baseline, Unforgettable fuses ≈46 bits of entropy extracted from a face‑plus‑object pair with an additional 66 bits contributed by either a short password alone or a shorter password reinforced by an optional 2¹⁶‑space proof‑of‑work challenge.
 
 | Factors | Entropy usable today |
-| --- | --- |
-| Face (FaceNet‑128, 2‑bit quant.) | ≈ 11–26 bits |
-| Any generic object | ≈ 20 bits |
-| Face + object | ≈ 46 bits |
-| Password to fill the gap | 11 random ASCII chars (≈ 66 bits) |
-| Optional PoW (2¹⁶ space, Argon2id ≈ 5 try/s) | 3 h of brute force to receive additional 16 and resulting 128 bits of security |
+
+| Factor            | Entropy usable today | Notes |
+|-------------------|-----------------------|-------|
+| Face              | ≈14-20 bits             | FAR ≈ 2⁻²⁰–2⁻²¹ |
+| Generic object    | ≈40 bits             | Image distinguishing points |
+| Face + object     | ≈54 bits             | Independent sources add up |
+| Password          | ≈49 bits (8 chars) | ~6.12 bits per printable ASCII char |
+| PoW Challenge     | ≈6 bits             | 2⁶ space |
+| **Total**         | ≈112 bits           | ≥112-bit baseline satisfied |
 
 Further improvements are being researched:
 
