@@ -1,6 +1,6 @@
 {
-  "name": "rarimo-docs",
-  "version": "5.23.0",
+  "name": "unforgettable-docs",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
