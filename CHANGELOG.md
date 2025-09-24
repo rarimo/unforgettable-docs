@@ -6,9 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.0] - 2025-09-24
 ### Added
-
 - Docusaurus scaffolding;
 - Product overview;
 - Unforgettable Recovery for Bitcoin documentation;
 - Added doc for wallet devs;
+
+
+[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/1.0.0...HEAD
+[1.0.0]: https://github.com/rarimo/unforgettable-docs/releases/tag/1.0.0
