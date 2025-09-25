@@ -42,7 +42,7 @@ const config: Config = {
           rehypePlugins: [rehypeKatex],
         },
         theme: { customCss: './src/css/custom.css' },
-        gtag: { trackingID: 'G-PVC393K31J' }, // TODO: set up GA
+        gtag: { trackingID: 'G-N54453MXBJ' },
       } as Options,
     ],
   ],
