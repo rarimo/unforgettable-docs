@@ -124,14 +124,14 @@ const config: Config = {
         },
       ],
     },
-    // algolia: {
-    //   apiKey: '18092da45b925ef9b6428ca707da2165',
-    //   indexName: 'rarimo',
-    //   appId: '4PAZA7JWOP',
-    //   contextualSearch: false,
-    //   searchPagePath: 'search',
-    //   debug: true,
-    // },
+    algolia: {
+      apiKey: 'bec99a178b6435e0f44497971c3a3f35',
+      indexName: 'docs_unforgettable_app_v7z0y22hzw_pages',
+      appId: 'V7Z0Y22HZW',
+      contextualSearch: false,
+      searchPagePath: 'search',
+      debug: true,
+    },
     prism: {
       theme: themes.github,
       darkTheme: themes.dracula,
