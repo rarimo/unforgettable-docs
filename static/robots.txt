@@ -1,2 +1,4 @@
 User-agent: *
 Disallow: /cdn-cgi/
+
+# Algolia-Crawler-Verif: 59F3B4D2DE7618DF
