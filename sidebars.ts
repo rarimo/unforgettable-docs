@@ -7,6 +7,21 @@ const sidebars: SidebarsConfig = {
       label: 'What is Unforgettable.?',
       id: 'overview',
     },
+    {
+      type: 'html',
+      value: `
+        <div class="menu__splitter"></div>
+      `,
+    },
+    {
+      type: 'link',
+      label: 'Whitepaper',
+      href: 'https://unforgettable.app/fuzzy_extractor.pdf',
+      customProps: {
+        target: '_blank',
+        rel: 'noopener',
+      },
+    },
 
     // {
     //   type: 'doc',
