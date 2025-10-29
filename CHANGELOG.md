@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.0.4] - 2025-10-29
 ### Added
 - Unforgettable Extractor whitepaper link;
 
@@ -29,7 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added doc for wallet devs;
 
 
-[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/1.0.3...HEAD
+[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/1.0.4...HEAD
+[1.0.4]: https://github.com/rarimo/unforgettable-docs/compare/1.0.3...1.0.4
 [1.0.3]: https://github.com/rarimo/unforgettable-docs/compare/1.0.2...1.0.3
 [1.0.2]: https://github.com/rarimo/unforgettable-docs/compare/1.0.1...1.0.2
 [1.0.1]: https://github.com/rarimo/unforgettable-docs/compare/1.0.0...1.0.1
