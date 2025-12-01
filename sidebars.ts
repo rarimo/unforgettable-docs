@@ -64,6 +64,15 @@ const sidebars: SidebarsConfig = {
             'sdk/api/errors',
           ],
         },
+        {
+          type: 'link',
+          label: 'GitHub',
+          href: 'https://github.com/rarimo/unforgettable-sdk',
+          customProps: {
+            target: '_blank',
+            rel: 'noopener',
+          },
+        },
       ],
     },
     {
