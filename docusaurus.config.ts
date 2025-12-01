@@ -2,8 +2,8 @@ import { Options } from '@docusaurus/preset-classic'
 import npm2yarn from '@docusaurus/remark-plugin-npm2yarn'
 import { Config } from '@docusaurus/types'
 import { themes } from 'prism-react-renderer'
-import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
+import remarkMath from 'remark-math'
 
 const config: Config = {
   title: 'Unforgettable Docs',
@@ -17,7 +17,8 @@ const config: Config = {
   noIndex: process.env.STAGING === 'true',
   trailingSlash: true,
   customFields: {
-    whitepaperUrl: 'https://docs.unforgettable.app/files/Rarimo_whitepaper_v3.pdf',
+    whitepaperUrl:
+      'https://docs.unforgettable.app/files/Rarimo_whitepaper_v3.pdf',
   },
   organizationName: 'rarimo',
   projectName: 'unforgettable-docs',
@@ -25,6 +26,11 @@ const config: Config = {
   i18n: {
     defaultLocale: 'en',
     locales: ['en'],
+  },
+
+  themes: ['@docusaurus/theme-mermaid'],
+  markdown: {
+    mermaid: true,
   },
 
   presets: [
@@ -136,7 +142,18 @@ const config: Config = {
       theme: themes.github,
       darkTheme: themes.dracula,
       defaultLanguage: 'javascript',
-      additionalLanguages: ['json', 'solidity', 'bash', 'rust', 'tsx'],
+      additionalLanguages: [
+        'json',
+        'solidity',
+        'bash',
+        'rust',
+        'tsx',
+        'typescript',
+        'kotlin',
+        'swift',
+        'groovy',
+        'java',
+      ],
     },
 
     metadata: [

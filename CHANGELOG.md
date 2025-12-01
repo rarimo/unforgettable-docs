@@ -5,6 +5,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Comprehensive SDK documentation with platform-specific guides (Web, React, React Native, Android, iOS)
+- Advanced SDK guides covering architecture, encryption, data transfer, and URL generation
+- SDK API reference
+- Mermaid diagram support for visual documentation
 
 ## [1.0.4] - 2025-10-29
 ### Added

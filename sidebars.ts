@@ -8,6 +8,61 @@ const sidebars: SidebarsConfig = {
       id: 'overview',
     },
     {
+      type: 'category',
+      label: 'SDK',
+      collapsible: true,
+      collapsed: false,
+      items: [
+        'sdk/intro',
+        {
+          type: 'category',
+          label: 'Getting Started',
+          collapsible: true,
+          collapsed: false,
+          items: [
+            'sdk/getting-started/installation',
+            'sdk/getting-started/quick-start',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Platform Guides',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'sdk/platforms/web',
+            'sdk/platforms/react',
+            'sdk/platforms/react-native',
+            'sdk/platforms/android',
+            'sdk/platforms/ios',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'Advanced',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'sdk/advanced/architecture',
+            'sdk/advanced/encryption',
+            'sdk/advanced/data-transfer',
+            'sdk/advanced/url-generation',
+          ],
+        },
+        {
+          type: 'category',
+          label: 'API Reference',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'sdk/api/unforgettable-sdk',
+            'sdk/api/recovery-factors',
+            'sdk/api/errors',
+          ],
+        },
+      ],
+    },
+    {
       type: 'html',
       value: `
         <div class="menu__splitter"></div>

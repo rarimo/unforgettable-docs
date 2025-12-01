@@ -22,6 +22,7 @@
     "@docusaurus/plugin-ideal-image": "3.8.1",
     "@docusaurus/preset-classic": "^3.7.0",
     "@docusaurus/remark-plugin-npm2yarn": "^3.7.0",
+    "@docusaurus/theme-mermaid": "3.8.1",
     "@mdx-js/react": "^3.0.0",
     "docusaurus-plugin-llms": "^0.1.4",
     "prism-react-renderer": "^2.3.1",
