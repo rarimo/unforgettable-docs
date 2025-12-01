@@ -1545,7 +1545,7 @@
     webpack "^5.95.0"
     webpackbar "^6.0.1"
 
-"@docusaurus/core@3.8.1", "@docusaurus/core@^3.7.0":
+"@docusaurus/core@3.8.1":
   version "3.8.1"
   resolved "https://registry.npmjs.org/@docusaurus/core/-/core-3.8.1.tgz"
   integrity sha512-ENB01IyQSqI2FLtOzqSI3qxG2B/jP4gQPahl2C3XReiLebcVh5B5cB9KYFvdoOqOWPyr5gXK4sjgTKv7peXCrA==
@@ -1846,9 +1846,9 @@
     tslib "^2.6.0"
     webpack "^5.88.1"
 
-"@docusaurus/preset-classic@^3.7.0":
+"@docusaurus/preset-classic@3.8.1":
   version "3.8.1"
-  resolved "https://registry.npmjs.org/@docusaurus/preset-classic/-/preset-classic-3.8.1.tgz"
+  resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-3.8.1.tgz#bb79fd12f3211363720c569a526c7e24d3aa966b"
   integrity sha512-yJSjYNHXD8POMGc2mKQuj3ApPrN+eG0rO1UPgSx7jySpYU+n4WjBikbrA2ue5ad9A7aouEtMWUoiSRXTH/g7KQ==
   dependencies:
     "@docusaurus/core" "3.8.1"
@@ -1867,9 +1867,9 @@
     "@docusaurus/theme-search-algolia" "3.8.1"
     "@docusaurus/types" "3.8.1"
 
-"@docusaurus/remark-plugin-npm2yarn@^3.7.0":
+"@docusaurus/remark-plugin-npm2yarn@3.8.1":
   version "3.8.1"
-  resolved "https://registry.npmjs.org/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.8.1.tgz"
+  resolved "https://registry.yarnpkg.com/@docusaurus/remark-plugin-npm2yarn/-/remark-plugin-npm2yarn-3.8.1.tgz#148f2f28d6b04fe3f9a8f027f45f7259b916a65d"
   integrity sha512-lrws3n7jyJrDKqpdFiEX0ZIwVOgGj9z+ZXf0k/rXrftcNh06Y+cEMnNVoNpO3EJKiLDXmTWoxGf/I1qWb/WV6g==
   dependencies:
     mdast-util-mdx "^3.0.0"

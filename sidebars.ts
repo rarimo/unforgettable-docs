@@ -10,6 +10,10 @@ const sidebars: SidebarsConfig = {
     {
       type: 'category',
       label: 'SDK',
+      link: {
+        type: 'doc',
+        id: 'sdk/intro',
+      },
       collapsible: true,
       collapsed: false,
       items: [

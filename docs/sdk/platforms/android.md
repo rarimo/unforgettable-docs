@@ -78,7 +78,7 @@ import com.rarimo.unforgettable.RecoveryFactor
 val sdk = UnforgettableSDK(
     UnforgettableSdkOptions(
         mode = UnforgettableMode.CREATE,
-        factors = listOf(RecoveryFactor.FACE, RecoveryFactor.PASSWORD),
+        factors = listOf(RecoveryFactor.FACE, RecoveryFactor.IMAGE, RecoveryFactor.PASSWORD),
         group = "my-android-app"
     )
 )

@@ -1,12 +1,9 @@
 ---
 sidebar_position: 1
+sidebar_label: Introduction
 ---
 
-# Introduction
-
-Welcome to the **Unforgettable SDK** documentation! This SDK provides a secure, client-side toolkit for key exchange and recovery in the [Unforgettable.app](https://unforgettable.app) ecosystem.
-
-## What is Unforgettable SDK?
+# Unforgettable SDK
 
 Unforgettable SDK enables you to integrate seedless login and account recovery into your applications. It allows users to recover their private keys using various recovery factors such as:
 
