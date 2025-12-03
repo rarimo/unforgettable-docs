@@ -8,8 +8,6 @@ Understand the high-level architecture and design principles of the Unforgettabl
 
 ## System Architecture
 
-The Unforgettable SDK operates in a distributed architecture with three main components:
-
 ```mermaid
 graph TB
     App[Your Application]
@@ -48,11 +46,6 @@ The client-side SDK running in your application that:
 - **Polls for Data**: Periodically checks the API for recovered keys
 - **Decrypts Data**: Decrypts the recovered key using the private key
 
-**Key Features:**
-- Zero server-side secrets
-- Client-side encryption/decryption only
-- No private keys leave the device during generation
-
 ### 3. Unforgettable.app
 
 The web application where users complete the recovery process:
@@ -67,7 +60,7 @@ The web application where users complete the recovery process:
 The backend service that:
 - Acts as a temporary encrypted data transfer mechanism
 - Stores encrypted recovery keys (cannot decrypt them)
-- Serves data to authorized SDK instances
+- Serves encrypted data to the SDK upon request
 - Implements rate limiting and security measures
 
 ## Security Model
@@ -161,7 +154,7 @@ sequenceDiagram
 
 - Each SDK instance is independent
 - No persistent storage required
-- Fresh key pair for each recovery session
+- Fresh encryption key pair for each recovery session
 - Prevents key reuse vulnerabilities
 
 ### 4. Fail-Safe Defaults
@@ -173,26 +166,14 @@ sequenceDiagram
 
 ## Recovery Factors
 
-The SDK supports multiple recovery factors:
-
-### Recovery Factor Types
-
-| Factor | ID | Description | Security Level |
-|--------|----|----|----------------|
-| Face | 1 | Biometric facial recognition | Medium |
-| Image | 2 | Physical object recognition | Medium-High |
-| Password | 3 | User-defined password | High |
-
-### Factor Combination
-
-Applications can specify which factors to support:
+The SDK supports multiple [recovery factors](../api/recovery-factors.md). Applications can specify which factors to support:
 
 ```typescript
+// Multiple factors
+factors: [RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password]
+
 // Single factor
 factors: [RecoveryFactor.Face]
-
-// Multiple factors (user chooses)
-factors: [RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password]
 
 // No factors specified (user chooses from all available)
 factors: []
@@ -220,55 +201,6 @@ stateDiagram-v2
 3. **Completed**: User completed factors, encrypted data available
 4. **Retrieved**: SDK successfully fetched and decrypted data
 5. **Expired**: Transfer exceeded time-to-live (TTL)
-
-### Time-to-Live (TTL)
-
-- Default TTL: 24 hours
-- Configurable per deployment
-- Automatic cleanup prevents data accumulation
-- Fresh transfers for each recovery attempt
-
-## Privacy Considerations
-
-### Data Minimization
-
-- Only essential data transmitted
-- No PII required for basic operation
-- Optional wallet address for restore mode
-- Custom parameters are application-specific
-
-### Data Retention
-
-- Encrypted data stored temporarily
-- Automatic deletion after TTL
-- No long-term data persistence
-- Audit logs contain no sensitive data
-
-## Integration Patterns
-
-### Pattern 1: Embedded Recovery
-
-```
-Your App → SDK → Recovery Flow → Wallet Created
-```
-
-Recovery integrated directly into onboarding.
-
-### Pattern 2: Optional Backup
-
-```
-Your App → Wallet Created → Optional: SDK → Backup Set Up
-```
-
-Recovery offered as an optional feature after wallet creation.
-
-### Pattern 3: Recovery-Only
-
-```
-Your App → SDK (Restore) → Wallet Restored
-```
-
-Used only for recovering existing wallets.
 
 ## Next Steps
 

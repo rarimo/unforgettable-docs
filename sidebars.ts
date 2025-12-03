@@ -23,7 +23,7 @@ const sidebars: SidebarsConfig = {
     {
       type: 'doc',
       label: 'Getting Started',
-      id: 'sdk/getting-started/getting-started',
+      id: 'sdk/getting-started',
     },
     {
       type: 'category',

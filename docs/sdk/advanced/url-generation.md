@@ -70,17 +70,12 @@ epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo
 
 #### `f` (Optional)
 
-**Description**: Recovery Factors
+**Description**: [Recovery Factors](../api/recovery-factors.md)
 
 **Format**: Comma-separated list of factor IDs
 ```
 f=1,2,3
 ```
-
-**Values**:
-- `1` = Face recognition
-- `2` = Image/Object recognition
-- `3` = Password
 
 **Purpose**:
 - Pre-selects available recovery factors

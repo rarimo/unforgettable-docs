@@ -13,12 +13,11 @@ Unforgettable SDK enables you to integrate seedless login and account recovery i
 
 ## Key Features
 
-- **🔒 End-to-End Encryption**: All data is encrypted using industry-standard X25519 key exchange and ChaCha20-Poly1305 cipher
 - **🌐 Cross-Platform**: Available for Web, React, React Native, Android (Kotlin), and iOS (Swift)
 - **🚀 Easy Integration**: Simple APIs to generate recovery URLs and retrieve recovered keys
+- **🔒 End-to-End Encryption**: All data is encrypted using industry-standard X25519 key exchange and ChaCha20-Poly1305 cipher
 - **🔄 Flexible Recovery**: Support for multiple recovery factors
-- **📦 Zero Dependencies on Backend**: Client-side encryption with secure key exchange
-- **🎨 Customizable**: Support for custom parameters and branding
+- **🎨 Customizable**: Support for custom parameters
 
 ## How It Works
 
@@ -54,14 +53,6 @@ sequenceDiagram
     SDK->>App: Return decrypted key
 ```
 
-## Use Cases
-
-- **Wallet Recovery**: Enable users to recover their crypto wallets without seed phrases
-- **Passwordless Recovery**: Implement secure biometric recovery
-- **Multi-Factor Recovery**: Combine multiple recovery factors for enhanced security
-- **Social Recovery**: Allow users to recover accounts through trusted contacts
-- **Enterprise Solutions**: Secure key management for organizational accounts
-
 ## Quick Start
 
 Choose your platform to get started:
@@ -81,5 +72,5 @@ Or dive deeper into how the SDK works:
 ## Support
 
 - **GitHub**: [rarimo/unforgettable-sdk](https://github.com/rarimo/unforgettable-sdk)
-- **Website**: [unforgettable.app](https://unforgettable.app)
 - **Issues**: [GitHub Issues](https://github.com/rarimo/unforgettable-sdk/issues)
+- **Community & Support**: [Telegram group](https://t.me/+pWugh5xgDiE3Y2Jk)

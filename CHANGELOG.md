@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - SDK API reference
 - Mermaid diagram support for visual documentation
 
+### Changed
+- Improved documentation organization by converting multi-platform code examples to tabbed interfaces for better developer experience
+
 ## [1.0.4] - 2025-10-29
 ### Added
 - Unforgettable Extractor whitepaper link;

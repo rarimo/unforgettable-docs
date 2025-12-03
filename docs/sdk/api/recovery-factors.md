@@ -14,7 +14,12 @@ Recovery factors are authentication methods users can choose to protect their re
 
 ### RecoveryFactor Enum
 
-**TypeScript:**
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 export enum RecoveryFactor {
   Face = 1,
@@ -23,7 +28,9 @@ export enum RecoveryFactor {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 enum class RecoveryFactor(val value: Int) {
     FACE(1),
@@ -32,7 +39,9 @@ enum class RecoveryFactor(val value: Int) {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 public enum RecoveryFactor: Int {
     case face = 1
@@ -40,6 +49,9 @@ public enum RecoveryFactor: Int {
     case password = 3
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Factor Details
 
@@ -133,6 +145,24 @@ factors: [RecoveryFactor.Password]
 
 ## Usage Patterns
 
+### All Factors (Default)
+
+Don't specify factors to allow all options:
+
+```typescript
+const sdk = new UnforgettableSdk({
+  mode: 'create',
+  // factors omitted = all factors available
+})
+```
+
+**Equivalent to:**
+```typescript
+factors: [RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password]
+```
+
+---
+
 ### Single Factor
 
 Specify one factor for a streamlined experience:
@@ -179,53 +209,10 @@ const sdk = new UnforgettableSdk({
 
 ---
 
-### All Factors (Default)
-
-Don't specify factors to allow all options:
-
-```typescript
-const sdk = new UnforgettableSdk({
-  mode: 'create',
-  // factors omitted = all factors available
-})
-```
-
-**Equivalent to:**
-```typescript
-factors: [RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password]
-```
-
----
-
-### Recommended Combinations
-
-**High Security:**
-```typescript
-factors: [RecoveryFactor.Face, RecoveryFactor.Image]
-```
-Biometric primary, physical backup.
-
-**Enterprise:**
-```typescript
-factors: [RecoveryFactor.Password]
-```
-Familiar for business users.
-
-**Consumer Friendly:**
-```typescript
-factors: [RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password]
-```
-Biometric with password fallback.
-
-**Maximum Flexibility:**
-```typescript
-factors: [] // or omit
-```
-Let users choose any factor.
-
 ## Factor Validation
 
-### TypeScript
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
 
 ```typescript
 import { RecoveryFactor, ALL_RECOVERY_FACTORS } from '@rarimo/unforgettable-sdk'
@@ -241,7 +228,8 @@ if (validateFactors(userFactors)) {
 }
 ```
 
-### Kotlin
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
 
 ```kotlin
 fun validateFactors(factors: List<RecoveryFactor>): Boolean {
@@ -250,7 +238,8 @@ fun validateFactors(factors: List<RecoveryFactor>): Boolean {
 }
 ```
 
-### Swift
+  </TabItem>
+  <TabItem value="swift" label="Swift">
 
 ```swift
 func validateFactors(_ factors: [RecoveryFactor]) -> Bool {
@@ -258,6 +247,9 @@ func validateFactors(_ factors: [RecoveryFactor]) -> Bool {
     return factors.allSatisfy { validFactors.contains($0) }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ## UI Recommendations
 
@@ -298,7 +290,8 @@ Potential future additions:
 
 ## Examples
 
-### Factor Selection UI (React)
+<Tabs groupId="example-type">
+  <TabItem value="ui-component" label="Factor Selection UI (React)" default>
 
 ```tsx
 import { RecoveryFactor } from '@rarimo/unforgettable-sdk'
@@ -328,7 +321,8 @@ function FactorSelector({ onSelect }: { onSelect: (factor: RecoveryFactor) => vo
 }
 ```
 
-### Dynamic Factor Loading
+  </TabItem>
+  <TabItem value="dynamic-loading" label="Dynamic Factor Loading">
 
 ```typescript
 async function getAvailableFactors(): Promise<RecoveryFactor[]> {
@@ -347,8 +341,11 @@ async function getAvailableFactors(): Promise<RecoveryFactor[]> {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
 ## Next Steps
 
 - [UnforgettableSDK](/docs/sdk/api/unforgettable-sdk) - Main SDK API
 - [Errors](/docs/sdk/api/errors) - Error handling
-- [Quick Start](/docs/sdk/getting-started/quick-start) - Get started quickly
+- [Quick Start](/docs/sdk/getting-started) - Get started quickly

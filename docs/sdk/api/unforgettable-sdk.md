@@ -2,6 +2,9 @@
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 # UnforgettableSDK Class
 
 Complete API reference for the `UnforgettableSDK` class.
@@ -18,7 +21,9 @@ Creates a new instance of the Unforgettable SDK.
 |------|------|----------|-------------|
 | `options` | `UnforgettableSdkOptions` | Yes | Configuration options |
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 import { UnforgettableSdk, RecoveryFactor } from '@rarimo/unforgettable-sdk'
 
@@ -29,7 +34,9 @@ const sdk = new UnforgettableSdk({
 })
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 import app.unforgettable.sdk.*
 
@@ -42,7 +49,9 @@ val sdk = UnforgettableSDK(
 )
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 import UnforgettableSDK
 
@@ -53,6 +62,9 @@ let sdk = try UnforgettableSDK(options: UnforgettableSdkOptions(
 ))
 ```
 
+  </TabItem>
+</Tabs>
+
 ## Methods
 
 ### `getRecoveryUrl()`
@@ -61,24 +73,33 @@ Generates the recovery URL to share with the user.
 
 **Returns:** `Promise<string>` (TypeScript) | `String` (Kotlin/Swift)
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 const recoveryUrl = await sdk.getRecoveryUrl()
 console.log(recoveryUrl)
 // "https://unforgettable.app/c#id=...&epk=...&f=1,3&g=my-app"
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 val recoveryUrl = sdk.getRecoveryUrl()
 println(recoveryUrl)
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 let recoveryUrl = sdk.getRecoveryUrl()
 print(recoveryUrl)
 ```
+
+  </TabItem>
+</Tabs>
 
 **Throws:**
 - `CryptoError` - If key generation fails
@@ -89,7 +110,9 @@ Retrieves the complete recovered data including recovery key.
 
 **Returns:** `Promise<RecoveredData>` (TypeScript) | `RecoveredData` (Kotlin/Swift)
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 try {
   const data = await sdk.getRecoveredData()
@@ -101,7 +124,9 @@ try {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 lifecycleScope.launch {
     try {
@@ -113,7 +138,9 @@ lifecycleScope.launch {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 Task {
     do {
@@ -127,6 +154,9 @@ Task {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
 **Throws:**
 - `NotFoundError` - Data transfer not found (user hasn't completed recovery)
 - `NetworkError` - Network connectivity issues
@@ -139,21 +169,30 @@ Convenience method to retrieve only the recovery key.
 
 **Returns:** `Promise<string>` (TypeScript) | `String` (Kotlin/Swift)
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 const recoveryKey = await sdk.getRecoveredKey()
 // Equivalent to: (await sdk.getRecoveredData()).recoveryKey
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 val recoveryKey = sdk.getRecoveredKey()
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 let recoveryKey = try await sdk.getRecoveredKey()
 ```
+
+  </TabItem>
+</Tabs>
 
 **Throws:**
 - Same as `getRecoveredData()`
@@ -164,7 +203,9 @@ let recoveryKey = try await sdk.getRecoveredKey()
 
 Configuration options for initializing the SDK.
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 interface UnforgettableSdkOptions {
   mode: 'create' | 'restore'
@@ -177,7 +218,9 @@ interface UnforgettableSdkOptions {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 data class UnforgettableSdkOptions(
     val mode: UnforgettableMode,
@@ -190,7 +233,9 @@ data class UnforgettableSdkOptions(
 )
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 public struct UnforgettableSdkOptions {
     public let mode: UnforgettableMode
@@ -202,6 +247,9 @@ public struct UnforgettableSdkOptions {
     public let customParams: [String: String]?
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 #### Properties
 
@@ -219,26 +267,35 @@ public struct UnforgettableSdkOptions {
 
 Data returned from recovery operations.
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 interface RecoveredData {
   recoveryKey: string
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 data class RecoveredData(
     val recoveryKey: String,
 )
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 public struct RecoveredData {
     public let recoveryKey: String
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 #### Properties
 
@@ -250,12 +307,16 @@ public struct RecoveredData {
 
 Recovery operation mode.
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 type UnforgettableMode = 'create' | 'restore'
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 enum class UnforgettableMode {
     CREATE,
@@ -263,13 +324,18 @@ enum class UnforgettableMode {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 public enum UnforgettableMode {
     case create
     case restore
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Properties
 
@@ -299,7 +365,7 @@ console.log(sdk.appUrl) // 'https://unforgettable.app'
 
 ### `factors`
 
-The recovery factors configured for this instance.
+The [recovery factors](./recovery-factors.md) configured for this instance.
 
 **Type:** `RecoveryFactor[]`
 

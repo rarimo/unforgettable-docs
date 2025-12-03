@@ -17,7 +17,12 @@ Data transfer not found or not yet available.
 - Transfer ID doesn't exist
 - Data expired (past TTL)
 
-**TypeScript:**
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 import { NotFoundError } from '@rarimo/unforgettable-sdk'
 
@@ -30,7 +35,9 @@ try {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 try {
     val key = sdk.getRecoveredKey()
@@ -39,7 +46,9 @@ try {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 do {
     let key = try await sdk.getRecoveredKey()
@@ -49,6 +58,9 @@ do {
     }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 **Recommended Action:** Continue polling
 
@@ -64,7 +76,9 @@ Network connectivity or HTTP request failed.
 - Request timeout
 - HTTP error codes (500, 503, etc.)
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 try {
   const key = await sdk.getRecoveredKey()
@@ -76,7 +90,9 @@ try {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 try {
     val key = sdk.getRecoveredKey()
@@ -85,7 +101,9 @@ try {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 do {
     let key = try await sdk.getRecoveredKey()
@@ -95,6 +113,9 @@ do {
     }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 **Recommended Action:** Retry with exponential backoff
 
@@ -111,7 +132,9 @@ Cryptographic operation failed.
 - Invalid encryption key
 - Malformed encrypted data
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 try {
   const key = await sdk.getRecoveredKey()
@@ -123,7 +146,9 @@ try {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 try {
     val sdk = UnforgettableSDK(options)
@@ -138,7 +163,9 @@ try {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 do {
     let sdk = try UnforgettableSDK(options: options)
@@ -157,6 +184,9 @@ do {
 }
 ```
 
+  </TabItem>
+</Tabs>
+
 **Recommended Action:** Abort and restart recovery process
 
 ---
@@ -170,7 +200,9 @@ API returned unexpected or malformed response.
 - Missing required fields
 - Invalid JSON
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 try {
   const key = await sdk.getRecoveredKey()
@@ -181,7 +213,9 @@ try {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 try {
     val data = sdk.getRecoveredData()
@@ -190,7 +224,9 @@ try {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 do {
     let data = try await sdk.getRecoveredData()
@@ -200,6 +236,9 @@ do {
     }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 **Recommended Action:** Retry or report error
 
@@ -214,7 +253,9 @@ Failed to decode/parse data.
 - Base64 decoding failed
 - Invalid data format
 
-**TypeScript:**
+<Tabs groupId="platform">
+  <TabItem value="typescript" label="TypeScript" default>
+
 ```typescript
 try {
   const key = await sdk.getRecoveredKey()
@@ -225,7 +266,9 @@ try {
 }
 ```
 
-**Kotlin:**
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 try {
     val data = sdk.getRecoveredData()
@@ -234,7 +277,9 @@ try {
 }
 ```
 
-**Swift:**
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 do {
     let data = try await sdk.getRecoveredData()
@@ -244,6 +289,9 @@ do {
     }
 }
 ```
+
+  </TabItem>
+</Tabs>
 
 **Recommended Action:** Retry or abort
 

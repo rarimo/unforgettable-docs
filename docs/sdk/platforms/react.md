@@ -115,7 +115,7 @@ function App() {
 | `mode` | `'create' \| 'restore'` | Yes | Operation mode |
 | `appUrl` | `string` | No | Custom Unforgettable app URL |
 | `apiUrl` | `string` | No | Custom API URL |
-| `factors` | `RecoveryFactor[]` | No | Recovery factors to use |
+| `factors` | `RecoveryFactor[]` | No | [Recovery factors](../api/recovery-factors.md) to use |
 | `walletAddress` | `string` | Conditional | Required for `restore` mode |
 | `group` | `string` | No | Group identifier |
 | `customParams` | `Record<string, string>` | No | Custom URL parameters |
