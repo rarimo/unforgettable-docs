@@ -260,20 +260,29 @@ flowchart TD
 
 ### Random Number Generation
 
-**Browser:**
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="platform">
+  <TabItem value="browser" label="Browser" default>
+
 ```typescript
 const randomBytes = (length: number): Uint8Array => {
   return crypto.getRandomValues(new Uint8Array(length))
 }
 ```
 
-**Node.js:**
+  </TabItem>
+  <TabItem value="nodejs" label="Node.js">
+
 ```typescript
 import { randomBytes } from 'crypto'
 const bytes = randomBytes(32)
 ```
 
-**Android:**
+  </TabItem>
+  <TabItem value="android" label="Android">
+
 ```kotlin
 import java.security.SecureRandom
 
@@ -282,7 +291,9 @@ val bytes = ByteArray(32)
 random.nextBytes(bytes)
 ```
 
-**iOS:**
+  </TabItem>
+  <TabItem value="ios" label="iOS">
+
 ```swift
 import Security
 
@@ -293,6 +304,9 @@ let status = SecRandomCopyBytes(
     &bytes
 )
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Base64 URL Encoding
 

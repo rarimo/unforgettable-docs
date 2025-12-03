@@ -8,9 +8,13 @@ Learn how to integrate Unforgettable SDK into your Android application using Kot
 
 ## Installation
 
-### Gradle (Kotlin DSL)
+Add JitPack repository and dependency to your build configuration:
 
-Add JitPack repository and dependency to your `build.gradle.kts`:
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="build-tool">
+  <TabItem value="gradle-kts" label="Gradle (Kotlin)" default>
 
 ```kotlin
 repositories {
@@ -22,9 +26,8 @@ dependencies {
 }
 ```
 
-### Gradle (Groovy)
-
-Add to your `build.gradle`:
+  </TabItem>
+  <TabItem value="gradle-groovy" label="Gradle (Groovy)">
 
 ```groovy
 repositories {
@@ -36,7 +39,8 @@ dependencies {
 }
 ```
 
-### Maven
+  </TabItem>
+  <TabItem value="maven" label="Maven">
 
 ```xml
 <repositories>
@@ -52,6 +56,9 @@ dependencies {
     <version>0.8.0</version>
 </dependency>
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Permissions
 

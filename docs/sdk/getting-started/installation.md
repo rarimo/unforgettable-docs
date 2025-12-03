@@ -10,57 +10,88 @@ This guide will help you install the Unforgettable SDK for your platform.
 
 Install the core SDK package using your preferred package manager:
 
-### npm
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
 ```bash
 npm install @rarimo/unforgettable-sdk
 ```
 
-### yarn
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+
 ```bash
 yarn add @rarimo/unforgettable-sdk
 ```
 
-### pnpm
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
 ```bash
 pnpm add @rarimo/unforgettable-sdk
 ```
+
+  </TabItem>
+</Tabs>
 
 ## React
 
 For React applications, install the React-specific package which includes helpful hooks and components:
 
-### npm
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
 ```bash
 npm install @rarimo/unforgettable-sdk-react
 ```
 
-### yarn
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+
 ```bash
 yarn add @rarimo/unforgettable-sdk-react
 ```
 
-### pnpm
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
 ```bash
 pnpm add @rarimo/unforgettable-sdk-react
 ```
+
+  </TabItem>
+</Tabs>
 
 ## React Native
 
 For React Native applications:
 
-### npm
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
 ```bash
 npm install @rarimo/unforgettable-sdk
 ```
 
-### yarn
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
+
 ```bash
 yarn add @rarimo/unforgettable-sdk
 ```
 
+  </TabItem>
+</Tabs>
+
 ## Android
 
-Add JitPack repository and dependency to your `build.gradle.kts`:
+Add JitPack repository and dependency to your build configuration:
+
+<Tabs groupId="build-tool">
+  <TabItem value="gradle-kts" label="Gradle (Kotlin)" default>
 
 ```kotlin
 repositories {
@@ -72,7 +103,8 @@ dependencies {
 }
 ```
 
-Or if using Groovy `build.gradle`:
+  </TabItem>
+  <TabItem value="gradle-groovy" label="Gradle (Groovy)">
 
 ```groovy
 repositories {
@@ -84,7 +116,8 @@ dependencies {
 }
 ```
 
-### Maven
+  </TabItem>
+  <TabItem value="maven" label="Maven">
 
 ```xml
 <repositories>
@@ -100,6 +133,9 @@ dependencies {
     <version>0.8.0</version>
 </dependency>
 ```
+
+  </TabItem>
+</Tabs>
 
 ### Permissions
 
@@ -146,21 +182,27 @@ Or add it through Xcode:
 
 After installation, you can verify that the package is working by importing it:
 
-### JavaScript/TypeScript
+<Tabs groupId="platform">
+  <TabItem value="javascript" label="JavaScript/TypeScript" default>
+
 ```typescript
 import { UnforgettableSdk, RecoveryFactor } from '@rarimo/unforgettable-sdk'
 
 console.log('Unforgettable SDK loaded successfully!')
 ```
 
-### React
+  </TabItem>
+  <TabItem value="react" label="React">
+
 ```tsx
 import { UnforgettableQrCode } from '@rarimo/unforgettable-sdk-react'
 
 console.log('Unforgettable SDK React loaded successfully!')
 ```
 
-### Kotlin
+  </TabItem>
+  <TabItem value="kotlin" label="Kotlin">
+
 ```kotlin
 import com.rarimo.unforgettable.UnforgettableSDK
 import com.rarimo.unforgettable.RecoveryFactor
@@ -168,12 +210,17 @@ import com.rarimo.unforgettable.RecoveryFactor
 println("Unforgettable SDK loaded successfully!")
 ```
 
-### Swift
+  </TabItem>
+  <TabItem value="swift" label="Swift">
+
 ```swift
 import UnforgettableSDK
 
 print("Unforgettable SDK loaded successfully!")
 ```
+
+  </TabItem>
+</Tabs>
 
 ## Next Steps
 

@@ -12,15 +12,32 @@ Web applications display QR codes for users to scan with their mobile device. Fo
 
 ## Installation
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
 ```bash
 npm install @rarimo/unforgettable-sdk
 ```
 
-Or using yarn:
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
 
 ```bash
 yarn add @rarimo/unforgettable-sdk
 ```
+
+  </TabItem>
+  <TabItem value="pnpm" label="pnpm">
+
+```bash
+pnpm add @rarimo/unforgettable-sdk
+```
+
+  </TabItem>
+</Tabs>
 
 ## Basic Setup
 

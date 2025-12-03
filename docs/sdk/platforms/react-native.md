@@ -8,29 +8,46 @@ Learn how to integrate Unforgettable SDK into your React Native application.
 
 ## Installation
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
+
 ```bash
 npm install @rarimo/unforgettable-sdk
 ```
 
-Or using yarn:
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
 
 ```bash
 yarn add @rarimo/unforgettable-sdk
 ```
 
+  </TabItem>
+</Tabs>
+
 ### Additional Dependencies
 
 For WebView integration, install:
+
+<Tabs groupId="package-manager">
+  <TabItem value="npm" label="npm" default>
 
 ```bash
 npm install react-native-webview
 ```
 
-Or using yarn:
+  </TabItem>
+  <TabItem value="yarn" label="yarn">
 
 ```bash
 yarn add react-native-webview
 ```
+
+  </TabItem>
+</Tabs>
 
 For iOS, install pods:
 
