@@ -346,6 +346,6 @@ async function getAvailableFactors(): Promise<RecoveryFactor[]> {
 
 ## Next Steps
 
-- [UnforgettableSDK](/docs/sdk/api/unforgettable-sdk) - Main SDK API
-- [Errors](/docs/sdk/api/errors) - Error handling
-- [Quick Start](/docs/sdk/getting-started) - Get started quickly
+- [UnforgettableSDK](/sdk/api/unforgettable-sdk) - Main SDK API
+- [Errors](/sdk/api/errors) - Error handling
+- [Quick Start](/sdk/getting-started) - Get started quickly

@@ -576,6 +576,6 @@ try {
 
 ## Next Steps
 
-- [UnforgettableSDK API](/docs/sdk/api/unforgettable-sdk) - Main SDK reference
-- [Recovery Factors](/docs/sdk/api/recovery-factors) - Recovery factor details
-- [Advanced: Data Transfer](/docs/sdk/advanced/data-transfer) - Polling strategies
+- [UnforgettableSDK API](/sdk/api/unforgettable-sdk) - Main SDK reference
+- [Recovery Factors](/sdk/api/recovery-factors) - Recovery factor details
+- [Advanced: Data Transfer](/sdk/advanced/data-transfer) - Polling strategies

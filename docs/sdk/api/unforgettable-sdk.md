@@ -505,6 +505,6 @@ See [Error Reference](/docs/sdk/api/errors) for detailed error documentation.
 
 ## Next Steps
 
-- [Recovery Factors](/docs/sdk/api/recovery-factors) - Available authentication methods
+- [Recovery Factors](/sdk/api/recovery-factors) - Available authentication methods
 - [Errors](/docs/sdk/api/errors) - Error types and handling
 - [Advanced: Architecture](/docs/sdk/advanced/architecture) - How it works
