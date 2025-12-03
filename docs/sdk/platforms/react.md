@@ -7,7 +7,7 @@ sidebar_position: 2
 Learn how to integrate Unforgettable SDK into your React application using hooks and components.
 
 :::info Platform-Specific Approach
-React web applications display QR codes for users to scan with their mobile device. For mobile apps (Android, iOS, React Native), the recovery URL is opened in a WebView for in-app recovery. See the [platform guides](/sdk/intro#platform-specific-implementation) for details.
+React web applications display QR codes for users to scan with their mobile device. For mobile apps (Android, iOS, React Native), the recovery URL is opened in a WebView for in-app recovery.
 :::
 
 ## Installation
@@ -38,6 +38,37 @@ pnpm add @rarimo/unforgettable-sdk-react
 
   </TabItem>
 </Tabs>
+
+## Quick Start
+
+Get started in seconds with the `UnforgettableQrCode` component:
+
+```tsx
+import UnforgettableQrCode from '@rarimo/unforgettable-sdk-react'
+import { RecoveryFactor } from '@rarimo/unforgettable-sdk'
+
+function App() {
+  const handleSuccess = (privateKey: string) => {
+    console.log('✅ Recovery successful!', privateKey)
+    // Use the key for wallet creation, authentication, etc.
+  }
+
+  return (
+    <div className="app">
+      <h1>Account Recovery</h1>
+      <UnforgettableQrCode
+        mode="create"
+        factors={[RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password]}
+        onSuccess={handleSuccess}
+        onError={(error) => console.error(error)}
+        qrProps={{ size: 256 }}
+      />
+    </div>
+  )
+}
+```
+
+That's it! The component handles URL generation, QR code display, and polling automatically.
 
 ## Components
 

@@ -55,6 +55,70 @@ For iOS, install pods:
 cd ios && pod install && cd ..
 ```
 
+## Quick Start
+
+Here's a minimal example to get started:
+
+```tsx
+import React, { useEffect, useState } from 'react'
+import { View, ActivityIndicator } from 'react-native'
+import { WebView } from 'react-native-webview'
+import { UnforgettableSdk, RecoveryFactor, NotFoundError } from '@rarimo/unforgettable-sdk'
+
+export const RecoveryScreen = () => {
+  const [recoveryUrl, setRecoveryUrl] = useState<string | null>(null)
+  const [sdk, setSdk] = useState<UnforgettableSdk | null>(null)
+
+  useEffect(() => {
+    initRecovery()
+  }, [])
+
+  const initRecovery = async () => {
+    // 1. Initialize SDK
+    const newSdk = new UnforgettableSdk({
+      mode: 'create',
+      factors: [RecoveryFactor.Face, RecoveryFactor.Image],
+    })
+
+    // 2. Get recovery URL
+    const url = await newSdk.getRecoveryUrl()
+    setRecoveryUrl(url)
+    setSdk(newSdk)
+
+    // 3. Poll for key
+    pollForKey(newSdk)
+  }
+
+  const pollForKey = async (sdkInstance: UnforgettableSdk) => {
+    let attempts = 0
+    while (attempts < 60) {
+      try {
+        const key = await sdkInstance.getRecoveredKey()
+        console.log('✅ Recovery successful:', key)
+        return
+      } catch (error) {
+        if (error instanceof NotFoundError) {
+          attempts++
+          await new Promise(resolve => setTimeout(resolve, 3000))
+        }
+      }
+    }
+  }
+
+  if (!recoveryUrl) return <ActivityIndicator />
+
+  return (
+    <View style={{ flex: 1 }}>
+      <WebView
+        source={{ uri: recoveryUrl }}
+        javaScriptEnabled={true}
+        domStorageEnabled={true}
+      />
+    </View>
+  )
+}
+```
+
 ## Basic Setup
 
 ### Import the SDK

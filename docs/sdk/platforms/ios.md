@@ -24,6 +24,58 @@ dependencies: [
 2. Enter the repository URL: `https://github.com/rarimo/unforgettable-sdk`
 3. Select the version you want to use (0.8.0+)
 
+## Quick Start
+
+Here's a minimal example to get started:
+
+```swift
+import UIKit
+import WebKit
+import UnforgettableSDK
+
+class RecoveryViewController: UIViewController {
+    private var webView: WKWebView!
+    private var sdk: UnforgettableSDK!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // Setup WebView
+        let configuration = WKWebViewConfiguration()
+        configuration.allowsInlineMediaPlayback = true
+        webView = WKWebView(frame: view.bounds, configuration: configuration)
+        view.addSubview(webView)
+        
+        Task {
+            // 1. Initialize SDK
+            sdk = UnforgettableSDK(
+                mode: .create,
+                factors: [.face, .image, .password]
+            )
+            
+            // 2. Load recovery URL in WebView
+            let recoveryUrl = try await sdk.getRecoveryUrl()
+            if let url = URL(string: recoveryUrl) {
+                webView.load(URLRequest(url: url))
+            }
+            
+            // 3. Poll for recovered key
+            var attempts = 0
+            while attempts < 60 {
+                do {
+                    let key = try await sdk.getRecoveredKey()
+                    print("✅ Recovery successful: \(key)")
+                    break
+                } catch UnforgettableSDKError.notFound {
+                    attempts += 1
+                    try await Task.sleep(nanoseconds: 3_000_000_000)
+                }
+            }
+        }
+    }
+}
+```
+
 ## Basic Setup
 
 ### Import the SDK

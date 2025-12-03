@@ -21,14 +21,9 @@ const sidebars: SidebarsConfig = {
       id: 'sdk/intro',
     },
     {
-      type: 'category',
+      type: 'doc',
       label: 'Getting Started',
-      collapsible: true,
-      collapsed: false,
-      items: [
-        'sdk/getting-started/installation',
-        'sdk/getting-started/quick-start',
-      ],
+      id: 'sdk/getting-started/getting-started',
     },
     {
       type: 'category',

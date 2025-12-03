@@ -7,7 +7,7 @@ sidebar_position: 1
 Learn how to integrate Unforgettable SDK into your vanilla JavaScript or TypeScript web application.
 
 :::info Platform-Specific Approach
-Web applications display QR codes for users to scan with their mobile device. For mobile apps (Android, iOS, React Native), the recovery URL is opened in a WebView for in-app recovery. See the [platform guides](/sdk/intro#platform-specific-implementation) for details.
+Web applications display QR codes for users to scan with their mobile device. For mobile apps (Android, iOS, React Native), the recovery URL is opened in a WebView for in-app recovery.
 :::
 
 ## Installation
@@ -38,6 +38,49 @@ pnpm add @rarimo/unforgettable-sdk
 
   </TabItem>
 </Tabs>
+
+## Quick Start
+
+Here's a minimal example to get you started:
+
+```typescript
+import { UnforgettableSdk, RecoveryFactor, NotFoundError } from '@rarimo/unforgettable-sdk'
+import QRCode from 'qrcode'
+
+async function createRecovery() {
+  // 1. Initialize SDK
+  const sdk = new UnforgettableSdk({
+    mode: 'create',
+    factors: [RecoveryFactor.Face, RecoveryFactor.Image, RecoveryFactor.Password],
+  })
+
+  // 2. Generate and display QR code
+  const recoveryUrl = await sdk.getRecoveryUrl()
+  const canvas = document.getElementById('qr-canvas')
+  await QRCode.toCanvas(canvas, recoveryUrl, { width: 300 })
+
+  // 3. Poll for recovered key
+  const maxAttempts = 60
+  let attempts = 0
+  
+  while (attempts < maxAttempts) {
+    try {
+      const recoveryKey = await sdk.getRecoveredKey()
+      console.log('✅ Recovery successful!', recoveryKey)
+      return recoveryKey
+    } catch (error) {
+      if (error instanceof NotFoundError) {
+        attempts++
+        await new Promise(resolve => setTimeout(resolve, 3000))
+      } else {
+        throw error
+      }
+    }
+  }
+}
+
+createRecovery()
+```
 
 ## Basic Setup
 

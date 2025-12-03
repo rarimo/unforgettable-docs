@@ -66,6 +66,58 @@ Add to your `AndroidManifest.xml`:
 
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.CAMERA" />
+```
+
+## Quick Start
+
+Here's a minimal example to get started:
+
+```kotlin
+import android.webkit.WebView
+import androidx.lifecycle.lifecycleScope
+import com.rarimo.unforgettable.*
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+
+class RecoveryActivity : AppCompatActivity() {
+    private lateinit var sdk: UnforgettableSDK
+    private lateinit var webView: WebView
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        
+        webView = findViewById(R.id.recoveryWebView)
+        webView.settings.javaScriptEnabled = true
+        
+        lifecycleScope.launch {
+            // 1. Initialize SDK
+            sdk = UnforgettableSDK(
+                UnforgettableSdkOptions(
+                    mode = UnforgettableMode.CREATE,
+                    factors = listOf(RecoveryFactor.FACE, RecoveryFactor.IMAGE)
+                )
+            )
+            
+            // 2. Load recovery URL in WebView
+            val recoveryUrl = sdk.getRecoveryUrl()
+            webView.loadUrl(recoveryUrl)
+            
+            // 3. Poll for recovered key
+            var attempts = 0
+            while (attempts < 60) {
+                try {
+                    val key = sdk.getRecoveredKey()
+                    println("✅ Recovery successful: $key")
+                    break
+                } catch (e: UnforgettableSDKError.NotFound) {
+                    attempts++
+                    delay(3000)
+                }
+            }
+        }
+    }
+}
 ```
 
 ## Basic Setup
