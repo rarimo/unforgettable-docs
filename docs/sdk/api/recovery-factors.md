@@ -174,7 +174,7 @@ const sdk = new UnforgettableSdk({
 - Users choose what works best for them
 
 **Cons:**
-- Slightly more complex UI
+- Slightly more complex UX
 - Users may choose weak factors
 
 ---
@@ -288,29 +288,6 @@ const factorDescriptions = {
   [RecoveryFactor.Password]: "Use a password you create",
 }
 ```
-
-## Security Best Practices
-
-### For Face Recognition
-
-1. **Liveness Detection:** Ensure it's a real person
-2. **Multiple Angles:** Capture from different angles
-3. **Lighting Conditions:** Guide users to good lighting
-4. **Fallback:** Provide alternative if face scan fails
-
-### For Image Recognition
-
-1. **Unique Objects:** Encourage unique, personal items
-2. **Quality:** Ensure high-quality images
-3. **Storage:** Remind users to keep object safe
-4. **Backup:** Suggest photographing the object
-
-### For Passwords
-
-1. **Strength Requirements:** Minimum length, complexity
-2. **Prevent Common Passwords:** Check against common password lists
-3. **Password Hints:** Allow optional hints (non-sensitive)
-4. **Recovery:** Provide account recovery options
 
 ## Future Factors
 

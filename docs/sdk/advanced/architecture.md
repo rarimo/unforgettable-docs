@@ -228,22 +228,6 @@ stateDiagram-v2
 - Automatic cleanup prevents data accumulation
 - Fresh transfers for each recovery attempt
 
-## Scalability Considerations
-
-### Horizontal Scaling
-
-- Stateless API enables horizontal scaling
-- Load balancing across API instances
-- No session affinity required
-- Database-backed data transfers
-
-### Performance
-
-- Minimal cryptographic overhead
-- Efficient polling with exponential backoff
-- CDN-ready static assets
-- Optimized QR code generation
-
 ## Privacy Considerations
 
 ### Data Minimization

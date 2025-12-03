@@ -538,6 +538,21 @@ span.DocSearch-Button-Placeholder {
   width: 100%;
 }
 
+.menu__splitter {
+  margin: 1rem 0;
+  background: rgba(255, 255, 255, 0.05);
+  height: 1px;
+}
+
+.menu__section-header {
+  font-weight: 500;
+  font-size: 1rem;
+  text-transform: uppercase;
+  margin: 0;
+  padding: 0 1rem;
+  color: var(--primary-text-color);
+}
+
 @media screen and (max-width: 996px) {
   .footer__items {
     display: flex;
