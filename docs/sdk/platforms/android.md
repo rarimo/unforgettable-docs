@@ -28,7 +28,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.rarimo.unforgettable-sdk:android:0.8.0")
+    implementation("com.github.rarimo.unforgettable-sdk:android:1.0.0")
 }
 ```
 
@@ -41,7 +41,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.rarimo.unforgettable-sdk:android:0.8.0'
+    implementation 'com.github.rarimo.unforgettable-sdk:android:1.0.0'
 }
 ```
 
@@ -59,7 +59,7 @@ dependencies {
 <dependency>
     <groupId>com.github.rarimo.unforgettable-sdk</groupId>
     <artifactId>android</artifactId>
-    <version>0.8.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 

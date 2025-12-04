@@ -79,7 +79,7 @@ Generates the recovery URL to share with the user.
 ```typescript
 const recoveryUrl = await sdk.getRecoveryUrl()
 console.log(recoveryUrl)
-// "https://unforgettable.app/c#id=...&epk=...&f=1,3&g=my-app"
+// "https://unforgettable.app/sdk/c#id=...&epk=...&f=1,3&g=my-app"
 ```
 
   </TabItem>
@@ -256,7 +256,7 @@ public struct UnforgettableSdkOptions {
 | Property | Type | Default | Description |
 |----------|------|---------|-------------|
 | `mode` | `'create' \| 'restore'` | - | **Required.** Operation mode |
-| `appUrl` | `string` | `'https://unforgettable.app'` | Unforgettable app URL |
+| `appUrl` | `string` | `'https://unforgettable.app/sdk'` | Unforgettable app URL |
 | `apiUrl` | `string` | `'https://api.unforgettable.app'` | API endpoint URL |
 | `factors` | `RecoveryFactor[]` | `[]` | Recovery factors to enable |
 | `walletAddress` | `string` | `undefined` | Wallet address (required for restore mode) |
@@ -360,7 +360,7 @@ The Unforgettable app URL.
 **Read-only:** Yes
 
 ```typescript
-console.log(sdk.appUrl) // 'https://unforgettable.app'
+console.log(sdk.appUrl) // 'https://unforgettable.app/sdk'
 ```
 
 ### `factors`

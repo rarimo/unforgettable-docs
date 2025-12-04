@@ -11,14 +11,14 @@ Learn how recovery URLs are constructed and what each parameter means.
 Recovery URLs follow this structure:
 
 ```
-https://unforgettable.app/{mode}#{parameters}
+https://unforgettable.app/sdk/{mode}#{parameters}
 ```
 
 ### Components
 
 | Component | Description | Example |
 |-----------|-------------|---------|
-| Base URL | Unforgettable app domain | `https://unforgettable.app` |
+| Base URL | Unforgettable app URL | `https://unforgettable.app/sdk` |
 | Mode Path | `/c` (create) or `/r` (restore) | `/c` |
 | Hash Fragment | URL-encoded parameters | `#id=...&epk=...&f=...` |
 
@@ -26,12 +26,12 @@ https://unforgettable.app/{mode}#{parameters}
 
 **Create Mode:**
 ```
-https://unforgettable.app/c#id=550e8400-e29b-41d4-a716-446655440000&epk=yL8bV...&f=1,2,3&g=my-app
+https://unforgettable.app/sdk/c#id=550e8400-e29b-41d4-a716-446655440000&epk=yL8bV...&f=1,2,3&g=my-app
 ```
 
 **Restore Mode:**
 ```
-https://unforgettable.app/r#id=550e8400-e29b-41d4-a716-446655440000&epk=yL8bV...&f=1&wa=0x1234...&g=my-app
+https://unforgettable.app/sdk/r#id=550e8400-e29b-41d4-a716-446655440000&epk=yL8bV...&f=1&wa=0x1234...&g=my-app
 ```
 
 ## URL Parameters
@@ -149,7 +149,7 @@ const sdk = new UnforgettableSdk({
 
 **Resulting URL:**
 ```
-https://unforgettable.app/c#id=...&epk=...&theme=dark&lang=en
+https://unforgettable.app/sdk/c#id=...&epk=...&theme=dark&lang=en
 ```
 
 ## Parameter Encoding
@@ -203,7 +203,7 @@ const sdk = new UnforgettableSdk({
 
 // 3. SDK builds URL
 const recoveryUrl = await sdk.getRecoveryUrl()
-// Result: "https://unforgettable.app/c#id=...&epk=...&f=1,3&g=my-app&theme=dark"
+// Result: "https://unforgettable.app/sdk/c#id=...&epk=...&f=1,3&g=my-app&theme=dark"
 ```
 
 ### Internal Implementation
@@ -385,7 +385,7 @@ customParams: { apiKey: 'secret', userId: '12345' }
 ### Typical URL Length
 
 ```
-Base URL:       27 chars  (https://unforgettable.app/c)
+Base URL:       31 chars  (https://unforgettable.app/sdk/c)
 Hash symbol:     1 char   (#)
 id parameter:   42 chars  (id=uuid)
 epk parameter:  48 chars  (epk=base64url)
@@ -416,19 +416,19 @@ QR codes have limited data capacity:
 ### Minimal URL (Create Mode)
 
 ```
-https://unforgettable.app/c#id=a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7&epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo
+https://unforgettable.app/sdk/c#id=a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7&epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo
 ```
 
 ### Full Featured URL (Create Mode)
 
 ```
-https://unforgettable.app/c#id=a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7&epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo&f=1,2,3&g=my-wallet&theme=dark&lang=en
+https://unforgettable.app/sdk/c#id=a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7&epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo&f=1,2,3&g=my-wallet&theme=dark&lang=en
 ```
 
 ### Restore Mode URL
 
 ```
-https://unforgettable.app/r#id=a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7&epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo&f=1&wa=0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb&g=my-wallet
+https://unforgettable.app/sdk/r#id=a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7&epk=yL8bV5c4pEqFk2_GxPbN1mQvXhD4wZKj8RtY3nL9cWo&f=1&wa=0x742d35Cc6634C0532925a3b844Bc9e7595f0bEb&g=my-wallet
 ```
 
 ## Next Steps
