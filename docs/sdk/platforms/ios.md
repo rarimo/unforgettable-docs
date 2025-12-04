@@ -20,7 +20,7 @@ Add the package dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/rarimo/unforgettable-sdk", from: "0.8.0")
+    .package(url: "https://github.com/rarimo/unforgettable-sdk", from: "1.0.0")
 ]
 ```
 
@@ -28,7 +28,7 @@ dependencies: [
 
 1. File → Add Package Dependencies
 2. Enter the repository URL: `https://github.com/rarimo/unforgettable-sdk`
-3. Select the version you want to use (0.8.0+)
+3. Select the version you want to use (1.0.0+)
 
 ## Quick Start
 

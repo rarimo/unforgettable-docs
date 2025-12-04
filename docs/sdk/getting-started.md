@@ -115,7 +115,7 @@ repositories {
 }
 
 dependencies {
-    implementation("com.github.rarimo.unforgettable-sdk:android:0.8.0")
+    implementation("com.github.rarimo.unforgettable-sdk:android:1.0.0")
 }
 ```
 
@@ -128,7 +128,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.rarimo.unforgettable-sdk:android:0.8.0'
+    implementation 'com.github.rarimo.unforgettable-sdk:android:1.0.0'
 }
 ```
 
@@ -146,7 +146,7 @@ dependencies {
 <dependency>
     <groupId>com.github.rarimo.unforgettable-sdk</groupId>
     <artifactId>android</artifactId>
-    <version>0.8.0</version>
+    <version>1.0.0</version>
 </dependency>
 ```
 
@@ -168,14 +168,14 @@ Add the package dependency to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/rarimo/unforgettable-sdk", from: "0.8.0")
+    .package(url: "https://github.com/rarimo/unforgettable-sdk", from: "1.0.0")
 ]
 ```
 
 Or add via Xcode:
 1. File → Add Package Dependencies
 2. Enter: `https://github.com/rarimo/unforgettable-sdk`
-3. Select version 0.8.0+
+3. Select version 1.0.0+
 
   </TabItem>
 </Tabs>
