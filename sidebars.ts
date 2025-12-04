@@ -9,9 +9,70 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'html',
-      value: `
-        <div class="menu__splitter"></div>
-      `,
+      value: `<div class="menu__splitter"></div>`,
+    },
+    {
+      type: 'html',
+      value: `<span class="menu__section-header">SDK</span>`,
+    },
+    {
+      type: 'doc',
+      label: 'Introduction',
+      id: 'sdk/intro',
+    },
+    {
+      type: 'doc',
+      label: 'Getting Started',
+      id: 'sdk/getting-started',
+    },
+    {
+      type: 'category',
+      label: 'Platform Guides',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'sdk/platforms/web',
+        'sdk/platforms/react',
+        'sdk/platforms/react-native',
+        'sdk/platforms/android',
+        'sdk/platforms/ios',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Advanced',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'sdk/advanced/architecture',
+        'sdk/advanced/encryption',
+        'sdk/advanced/data-transfer',
+        'sdk/advanced/url-generation',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'API Reference',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'sdk/api/unforgettable-sdk',
+        'sdk/api/recovery-factors',
+        'sdk/api/errors',
+      ],
+    },
+    {
+      type: 'link',
+      label: 'GitHub',
+      href: 'https://github.com/rarimo/unforgettable-sdk',
+      customProps: {
+        target: '_blank',
+        rel: 'noopener',
+      },
+    },
+    {
+      type: 'html',
+      value: `<div class="menu__splitter"></div>`,
     },
     {
       type: 'link',
