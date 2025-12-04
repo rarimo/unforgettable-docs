@@ -1,4 +1,4 @@
-FROM node:18-alpine3.18 as builder
+FROM node:20-alpine AS builder
 RUN apk update && apk --no-cache add git
 
 ARG BASE_URL
@@ -7,7 +7,11 @@ ARG STAGING
 
 WORKDIR /app
 COPY package.json yarn.lock ./
-RUN yarn
+
+# Remove rlx dependency which doesn't support ARM64 Linux
+RUN sed -i '/@napalmpapalam\/rlx/d' package.json
+
+RUN yarn install --frozen-lockfile
 
 COPY . .
 RUN yarn build

@@ -394,6 +394,6 @@ Typical performance on modern hardware:
 
 ## Next Steps
 
-- [Data Transfer](/docs/sdk/advanced/data-transfer) - How encrypted data moves
-- [URL Generation](/docs/sdk/advanced/url-generation) - Recovery URL structure
-- [API Reference](/docs/sdk/api/unforgettable-sdk) - SDK methods
+- [Data Transfer](/sdk/advanced/data-transfer) - How encrypted data moves
+- [URL Generation](/sdk/advanced/url-generation) - Recovery URL structure
+- [API Reference](/sdk/api/unforgettable-sdk) - SDK methods
