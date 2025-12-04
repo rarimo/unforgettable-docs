@@ -6,6 +6,12 @@ sidebar_position: 5
 
 Learn how to integrate Unforgettable SDK into your iOS application using Swift.
 
+## Requirements
+
+- iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
+- Swift 5.9+
+- Xcode 15.0+
+
 ## Installation
 
 ### Swift Package Manager
@@ -698,12 +704,6 @@ struct YourApp: App {
 3. **UI Updates**: Ensure UI updates happen on the main thread
 4. **Memory Management**: Use `weak` references to avoid retain cycles
 5. **Security**: Never log or expose private keys in production
-
-## Requirements
-
-- iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
-- Swift 5.9+
-- Xcode 15.0+
 
 ## Next Steps
 

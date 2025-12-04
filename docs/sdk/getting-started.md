@@ -6,6 +6,22 @@ sidebar_position: 1
 
 This guide will help you install and get started with Unforgettable SDK.
 
+## Requirements
+
+### Web / React / React Native
+- Node.js 18+ or modern browser with Web Crypto API support
+- TypeScript 5.0+ (optional but recommended)
+
+### Android
+- Android SDK 21+ (Android 5.0 Lollipop)
+- Kotlin 1.9+
+- Java 17+
+
+### iOS
+- iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
+- Swift 5.9+
+- Xcode 15.0+
+
 ## Installation
 
 Choose your platform and install the SDK:
@@ -370,22 +386,6 @@ Explore platform-specific guides for detailed examples and advanced features:
 - [React Native](/sdk/platforms/react-native) - WebView integration
 - [Android](/sdk/platforms/android) - Native Android implementation
 - [iOS](/sdk/platforms/ios) - Native iOS implementation
-
-## Requirements
-
-### Web / React / React Native
-- Node.js 18+ or modern browser with Web Crypto API support
-- TypeScript 5.0+ (optional but recommended)
-
-### Android
-- Android SDK 21+ (Android 5.0 Lollipop)
-- Kotlin 1.9+
-- Java 17+
-
-### iOS
-- iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+
-- Swift 5.9+
-- Xcode 15.0+
 
 ## Key Concepts
 

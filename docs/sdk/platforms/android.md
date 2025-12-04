@@ -6,6 +6,12 @@ sidebar_position: 4
 
 Learn how to integrate Unforgettable SDK into your Android application using Kotlin.
 
+## Requirements
+
+- Android SDK 21+ (Android 5.0 Lollipop)
+- Kotlin 1.9+
+- Java 17+
+
 ## Installation
 
 Add JitPack repository and dependency to your build configuration:
@@ -656,12 +662,6 @@ try {
     println("Unexpected error: $e")
 }
 ```
-
-## Requirements
-
-- Android SDK 21+ (Android 5.0 Lollipop)
-- Kotlin 1.9+
-- Java 17+
 
 ## Next Steps
 
