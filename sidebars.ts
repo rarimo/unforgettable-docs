@@ -75,6 +75,11 @@ const sidebars: SidebarsConfig = {
       value: `<div class="menu__splitter"></div>`,
     },
     {
+      type: 'doc',
+      label: 'Benchmarks',
+      id: 'benchmarks',
+    },
+    {
       type: 'link',
       label: 'Whitepaper',
       href: 'https://unforgettable.app/fuzzy_extractor.pdf',

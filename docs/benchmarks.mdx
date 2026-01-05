@@ -1,0 +1,46 @@
+---
+title: Benchmarks
+description: Security and accuracy benchmarks for Unforgettable recovery factors (face, objects, location, voice).
+sidebar_label: Benchmarks
+slug: /benchmarks
+---
+
+This page summarizes benchmark results for Unforgettable recovery factors across face, objects, location, and voice.
+
+## Metrics
+
+- *FAR (False Acceptance Rate):* probability an incorrect user/sample is accepted.
+- *FRR (False Rejection Rate):* probability a correct user/sample is rejected during recovery.
+
+## Evaluation
+
+| Category | Security bits | FAR | FRR | Train dataset | Test dataset |
+|---|---:|---:|---:|---|---|
+| Face recognition | ~25–30 | <span style={{whiteSpace: 'nowrap'}}>2<sup>-25</sup> to 2<sup>-30</sup></span> | ~1% | MS1MV2 | MS1MV2_10k, LFW + custom |
+| Object recognition (Universal Vision) | ~20–40 | TBD | TBD | LVD-1689M | ImageNet + custom |
+| Location (Sphere Grid) | Up to 40 | 2<sup>-40</sup> | Depends on device location module + GPS service | Not required | Not required |
+| Voice recognition | ~5–8 | ~1% | ~1% | EER/minDCF | Custom (WIP) |
+
+## Factors
+
+### 1. Face recognition
+
+The face extractor uses MagFace with a custom co-training upgrade by the Rarimo team. The probability of a false detection (a different person extracts the same key) is around *2<sup>-30</sup>* (negligible), while false rejection is around *1%* (≈ one login error per 100 attempts). Training used MS1MV2, with validation on LFW and additional custom data.
+
+To reduce false rejections, we apply preprocessing such as image quality checks and positioning guidance. A liveness step gates key extraction until the user proves they are live, mitigating attacks using manipulated biometric samples.
+
+### 2. Object recognition
+
+The object extractor is based on Meta's DinoV3, trained on LVD-1689M and validated on ImageNet + a custom object dataset. Additional experiments are in progress; FAR/FRR numbers are currently marked as under tests.
+
+### 3. Location
+
+The location factor uses Google's S2 Geometry to provide a stable location source. For the factor to be recoverable, the user's location accuracy needs to be within roughly a 10-meter range.
+
+### 4. Voice recognition
+
+The voice extractor uses ECAPA-TDNN, with false-acceptance and false-rejection rates under 1%. It is trained on the EER/minDCF dataset and is being validated on additional datasets.
+
+## Runtime considerations
+
+All components can run client-side, but all extractors except location may require significant storage and can take *dozens of seconds* in-browser. Running extractors inside a TEE can reduce execution time to about *0.1 seconds* per extractor.

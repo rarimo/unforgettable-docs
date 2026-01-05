@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Benchmarks;
+
 ## [2.0.0] - 2025-12-04
 ### Added
 - Comprehensive SDK documentation with platform-specific guides (Web, React, React Native, Android, iOS)
