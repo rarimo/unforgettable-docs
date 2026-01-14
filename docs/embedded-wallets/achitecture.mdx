@@ -1,0 +1,78 @@
+---
+title: Architecture & Trust Model
+description: What runs on-device vs server-side vs on-chain, and what you can (and cannot) trust.
+sidebar_position: 2
+slug: /embedded-wallets/architecture
+---
+
+This page explains where Embedded Wallet components live, what each part can access, and the trust assumptions you should design around.
+
+## High-level components
+
+- **User device (client):** runs factor capture + key derivation and signs user-authorized actions.
+- **Smart account (on-chain):** holds funds and enforces spending policies and recovery rules.
+- **App backend (optional):** coordination, notifications, policy evaluation, storage of *recovery artifacts* (never plaintext keys).
+- **Passkeys:** a separate user-confirmation system (WebAuthn) for sensitive actions.
+- **Policy Engine:** the rules layer that defines allowed actions and recovery configuration.
+
+## Data placement: what lives where
+
+| Data / Capability | On-device | Off-chain backend | On-chain |
+|---|:--:|:--:|:--:|
+| Raw biometrics / visual input | ✅ | ❌ | ❌ |
+| Derived controlling key (plaintext) | ✅ (ephemeral) | ❌ | ❌ |
+| Smart account code + state | ❌ | ❌ | ✅ |
+| Recovery configuration (timelocks, thresholds) | ✅ (as UI/config) | ✅ (as config) | ✅ (as enforced rules) |
+| Passkeys (WebAuthn credentials) | ✅ (authenticator) | ❌ | ❌ |
+| Timelocked fallback tx (if enabled) | ❌ | ✅ (stored) | ✅ (executed) |
+| Guardian approvals (if enabled) | ❌ | optional | ✅ |
+
+## Trust model
+
+The safest default posture is:
+
+- **Trust the client with secrets** (because the user is there).
+- **Do not trust the backend with signing power.**
+- **Trust the chain to enforce rules** (timelocks/thresholds), because enforcement is verifiable.
+
+### What the backend is allowed to do
+
+A backend is still useful, even in a non-custodial design:
+
+- Deliver UX features (notifications, reminders, rate limiting).
+- Store *non-sensitive* helper data for the fuzzy extractor.
+- Store a pre-signed recovery transaction (if you enable the timelocked fallback transfer).
+- Coordinate a support runbook (identity checks, escalation).
+
+### What the backend must not do
+
+- Hold the user’s plaintext controlling key.
+- Bypass on-chain timelocks/thresholds.
+- Unilaterally change recovery policies without user consent.
+
+## Typical flows
+
+### Normal signing
+
+1. User completes required factors.
+2. Client derives the controlling key and signs.
+3. [Optional] Client confirms a sensitive action via passkey.
+4. Transaction is sent to chain (directly or via relayer/bundler).
+5. Smart account executes under configured rules.
+
+### Recovery safety nets
+
+Recovery “safety nets” activate only when primary derivation fails.
+
+- **Timelocked fallback transfer:** user pre-signs a transaction at setup; backend stores it; execution requires timelock + support verification.
+- **Social recovery:** guardians approve; smart account rotates controlling key; funds stay in-place.
+
+See [Recovery Overview](./recovery-overview).
+
+
+## Next
+
+- [Smart Account](./smart-account)
+- [Passkeys](./passkeys)
+- [Policy Engine](./policy-engine)
+- [Recovery](./recovery-overview)

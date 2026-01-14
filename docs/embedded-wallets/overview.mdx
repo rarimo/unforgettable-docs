@@ -1,0 +1,62 @@
+---
+title: Embedded Wallets Overview
+description: Seedless, self-custodial smart accounts that live inside your app.
+sidebar_position: 1
+slug: /embedded-wallets/overview
+---
+
+Embedded Wallets let your app provision a user wallet without asking them to store a seed phrase.
+
+The wallet is a smart account (smart-contract wallet) controlled by a key that is derived just in time(JIT) from user-held factors (e.g., biometrics / visual keys) rather than stored long-term. This keeps onboarding fast while preserving a self-custodial security posture.
+
+## When to use embedded wallets
+
+Use Unforgettable Embedded Wallets when you want:
+
+- **No legal custodial risks.** The user holds their own key; your backend cannot move funds.
+- **Streamlined onboarding** (no seed phrase, no extension install).
+- **Robust recovery mechanisms** that survive real-world failures (lost device, factor drift, etc.).
+
+## What you get
+
+Embedded Wallets are built around a few primitives:
+
+- **Smart account on-chain:** where assets live and where recovery rules can be enforced.
+- **On-device key derivation:** the controlling key is re-derived on demand from user factors.
+- **Passkeys:** a phishing-resistant confirmation layer for sensitive configuration steps.
+- **Policy Engine:** the single source of truth for recovery and signing rules (timelocks, thresholds, required checks).
+
+## Threat model
+
+Embedded wallets are designed to reduce common failure modes:
+
+- **Phishing / social engineering:** no seed phrase to type, paste, or “verify.”
+- **Backend compromise:** your backend should not be able to sign as the user.
+- **Device loss:** users can regain access from another device by repeating the required factors.
+- **Factor drift/unrecoverable change:** if key derivation cannot reproduce the secret, recovery falls back to pre-configured safety nets (see [Recovery Overview](./recovery-overview)).
+
+## Custody model
+
+Embedded wallets are fully non-custodial:
+
+- The user’s controlling key is derived on-device and should not be stored in plaintext or encrypted server-side.
+- On-chain components enforce rules and recovery constraints in a transparent way.
+- Off-chain services add extra convenience, but can't move funds or deny access.
+
+## What happens when key derivation fails
+
+Key derivation mechanisms based on noisy inputs (biometrics, visual keys) are robust to *small* changes but can fail under *large* changes.
+
+When the primary secret becomes unrecoverable, Embedded Wallets rely on preconfigured recovery mechanisms that do not undermine self-custody:
+
+- **Timelocked fallback transfer** (assisted recovery with an inactivity/timelock delay).
+- **Social recovery (guardians)** with threshold approvals and key rotation.
+
+See [Recovery Overview](./recovery-overview) for trade-offs and flows.
+
+## Next
+
+- [Architecture & Trust Model](./architecture)
+- [Smart Account](./smart-account)
+- [Passkeys](./passkeys)
+- [Policy Engine](./policy-engine)

@@ -13,6 +13,44 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'html',
+      value: `<span class="menu__section-header">Embedded Wallets</span>`,
+    },
+    {
+      type: 'doc',
+      label: 'Overview',
+      id: 'embedded-wallets/overview',
+    },
+    {
+      type: 'doc',
+      label: 'Architecture',
+      id: 'embedded-wallets/achitecture',
+    },
+    {
+      type: 'doc',
+      label: 'Smart account',
+      id: 'embedded-wallets/smart-account',
+    },
+    {
+      type: 'doc',
+      label: 'Passkeys',
+      id: 'embedded-wallets/passkeys',
+    },
+    {
+      type: 'doc',
+      label: 'Policy Engine',
+      id: 'embedded-wallets/policy-engine',
+    },
+    {
+      type: 'doc',
+      label: 'Recovery',
+      id: 'embedded-wallets/recovery',
+    },
+    {
+      type: 'html',
+      value: `<div class="menu__splitter"></div>`,
+    },
+    {
+      type: 'html',
       value: `<span class="menu__section-header">SDK</span>`,
     },
     {
