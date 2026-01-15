@@ -33,7 +33,7 @@ Embedded wallets are designed to reduce common failure modes:
 - **Phishing / social engineering:** no seed phrase to type, paste, or “verify.”
 - **Backend compromise:** your backend should not be able to sign as the user.
 - **Device loss:** users can regain access from another device by repeating the required factors.
-- **Factor drift/unrecoverable change:** if key derivation cannot reproduce the secret, recovery falls back to pre-configured safety nets (see [Recovery Overview](./recovery-overview)).
+- **Factor drift/unrecoverable change:** if key derivation cannot reproduce the secret, recovery falls back to pre-configured safety nets (see [Recovery](/embedded-wallets/recovery-overview)).
 
 ## Custody model
 
@@ -52,11 +52,11 @@ When the primary secret becomes unrecoverable, Embedded Wallets rely on preconfi
 - **Timelocked fallback transfer** (assisted recovery with an inactivity/timelock delay).
 - **Social recovery (guardians)** with threshold approvals and key rotation.
 
-See [Recovery Overview](./recovery-overview) for trade-offs and flows.
+See [Recovery](/embedded-wallets/recovery-overview) for trade-offs and flows.
 
 ## Next
 
-- [Architecture & Trust Model](./architecture)
-- [Smart Account](./smart-account)
-- [Passkeys](./passkeys)
-- [Policy Engine](./policy-engine)
+- [Architecture & Trust Model](/embedded-wallets/architecture)
+- [Smart Account](/embedded-wallets/smart-account)
+- [Passkeys](/embedded-wallets/passkeys)
+- [Policy Engine](/embedded-wallets/policy-engine)
