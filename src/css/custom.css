@@ -547,7 +547,6 @@ span.DocSearch-Button-Placeholder {
 .menu__section-header {
   font-weight: 500;
   font-size: 1rem;
-  text-transform: uppercase;
   margin: 0;
   padding: 0 1rem;
   color: var(--primary-text-color);

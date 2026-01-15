@@ -1,0 +1,60 @@
+---
+title: "Passkeys"
+description: Use WebAuthn passkeys as an explicit user-confirmation layer for sensitive embedded-wallet actions.
+sidebar_position: 3
+slug: /embedded-wallets/passkeys
+---
+
+Passkeys (WebAuthn/FIDO2) provide a phishing-resistant way to confirm high-impact actions inside embedded wallet flows.
+
+In Embedded Wallets, passkeys are best used as a confirmation module—not as the primary wallet key derivation mechanism.
+
+## What passkeys are used for
+
+Use passkeys to protect actions that are dangerous if clicked through accidentally or under social pressure:
+
+- Confirming large transfers as dictated by the Policy Engine.
+- Enabling recovery mechanisms.
+- Rotating recovery parameters (timelock duration, recovery destination, guardian set, thresholds).
+- Generating / re-generating a fallback recovery artifact.
+
+## Why passkeys are separate from key derivation
+
+Passkeys solve a different problem than fuzzy-extractor key derivation:
+
+- Key derivation proves “the user can reproduce the secret.”
+- Passkeys prove "the user is here right now and is explicitly approving this action."
+
+Keeping them separate lets you:
+
+- Require passkey confirmation for configuration changes without changing how wallet signing works.
+- Add additional policy checks (via the Policy Engine) without weakening user confirmation.
+
+## Example: confirming fallback recovery setup
+
+A common pattern (mirroring the UI flow in the reference design) is:
+
+1. Wallet is created.
+2. User is prompted to set up fallback recovery.
+3. The app explains what will happen:
+   - The user signs a recovery transaction that is not submitted now.
+   - The transaction is stored off-chain for a limited validity window (e.g., 90 days).
+   - It can only be used after a manual identity check.
+4. User reviews the summary (“from wallet → recovery destination”, “all funds”, “not submitted now”).
+5. User confirms via passkey.
+
+:::note
+Treat passkey confirmation as “breaking-glass UX.” If the action can eventually move all funds (even after a delay), it should require a strong confirmation step.
+:::
+
+## UX guidelines
+
+- **Explain the consequences in plain language.** If a fallback transaction could transfer *all funds*, say so.
+- **Show timing constraints clearly.** Timelock duration, validity window, and renewal reminders.
+- **Require user acknowledgment** (checkbox) before the passkey prompt.
+- Prefer “Confirm using passkey” to generic “Continue.”
+
+## Next
+
+- [Policy Engine](./policy-engine)
+- [Recovery](./recovery-overview)
