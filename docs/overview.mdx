@@ -13,11 +13,42 @@ import IdealImage from '@site/src/components/IdealImage';
 
 ## Why Unforgettable?
 
-- **No seed phrases:** Users authenticate leveraging visual memory (their face, a favorite object, etc.) instead of managing 12–24‑word phrases.
-- **Self-custodial and private:** The cryptographic secret is re-derived on the client device; only a public key and additional helping data are stored in the blockchain or on the app server. Raw biometrics or key material never leave the device.
-- **Multi‑factor auth:** Combine visuals (e.g., face + object), location and add a short password or proof‑of‑work (PoW) step to reach the full 112‑bit security target.
-- **Smooth onboarding:** First‑time users set up in seconds. Ideal for dApps that target mainstream audiences.
-- **Phishing‑resistant:** There is nothing to type or copy, eliminating most social‑engineering vectors.
+Unforgettable exists because both seed phrases and MPC wallets protect keys at the cost of either human usability or true self-custody.
+
+**Seed phrases** are cryptographically robust but human-hostile. They require users to permanently store a high-value secret, creating constant risk of loss, theft, phishing, or accidental exposure. Once leaked, compromise is total and irreversible. This model does not scale to mainstream users.
+
+**MPC wallets** eliminate seed phrases but introduce infrastructure dependency. Keys are split across providers and services that must remain online, honest, and compliant. This results in soft custody, regulatory ambiguity, higher operational costs, and systemic risks such as DoS or collusion. The user no longer fully controls the key lifecycle.
+
+**Unforgettable takes a third path.** It removes both persistent secrets and custodial signers by deriving keys just-in-time on the user’s device from user-held factors (e.g., biometrics and visual keys) using fuzzy extractors. This enables:
+
+* **No seed phrases:** Users authenticate via visual memory (face, favorite object, etc.) instead of managing 12–24-word phrases.
+* **Self-custodial and private:** The signing key is re-derived locally; only a public key and helper data are stored on-chain or on the app server. Raw biometrics and key material never leave the device.
+* **Multi-factor security:** Visuals (e.g., face + object), location, and optional password or proof-of-work (PoW) combine to reach a full 112-bit security target.
+* **Smooth onboarding:** Setup takes seconds, making it suitable for mainstream dApps.
+* **Phishing resistance:** There is nothing to type or copy, eliminating most social-engineering vectors.
+
+## Comparison with other wallet approaches
+
+Unforgettable fits into the “smart account + just‑in‑time key derivation” category. Below is a practical comparison against common alternatives.
+
+| Dimension | MPC wallet | Smart account + MPC signer | Smart account + passkeys (WebAuthn) | Unforgettable (smart account + fuzzy extractor) |
+|---|---|---|---|---|
+| **What it is** | Key is split into shares; multiple parties/devices must co-sign each transaction | Funds in a smart-contract wallet; multiple parties/devices must co-sign each transaction | Funds in a smart-contract wallet; authorization uses passkeys/WebAuthn-derived signing keys | Funds in a smart-contract wallet; signing key is derived on demand from biometrics/visual keys/location via fuzzy extractor (JIT keys) |
+| **Self-custody / regulatory risk** | **Medium–High** (signers can be seen as custodians) | **Medium–High** (signers can be seen as custodians) | **Low–Medium** (platform doesn’t control the key, but “soft custody” concerns may exist depending on the passkey provider model) | **Low** (user is the end key owner; platform never holds end keys/shares, only helper + policy metadata) |
+| **Key storage & risk** | **Medium–High**: shares stored on MPC provider infra (often in TEE). Risks: collusion, DoS | **Medium–High**: shares stored on MPC provider infra (often in TEE). Risks: collusion, DoS | **Low–Medium**: key stored on device; optionally synced. Risks: device loss/theft; ecosystem DoS/collusion if synced | **Low–Medium**: no end-key storage (JIT). Risks: spoofing attempts; platform availability/DoS |
+| **Recovery** | Depends on MPC providers | Depends on MPC providers | Device control (for local keys); if cloud-synced, relies on provider liveness | Relies on deterministic re-derivation; optional on-chain guardians/timelocks as safety nets |
+| **Cost assumptions** | Platform fee + per-signing/per-wallet costs; expensive at consumer scale | Platform fee + per-signing/per-wallet costs; expensive at consumer scale | Smart-account gas + bundler/paymaster ops; generally cheaper than MPC | Smart-account gas + bundler/paymaster ops + small helper-data storage; generally cheaper than MPC |
+| **Interoperability** | **High**: most dApps work out of the box | **Medium**: needs bundler/paymaster; usually per-chain deployments/modules | **Medium**: needs bundler/paymaster; usually per-chain deployments/modules | **High**: can produce standard keys/signatures and/or use smart-account policies; easier multi-chain (smart-account deployments still need bundler/paymaster infra) |
+| **Portability** | **Medium**: broad device/OS support, but hard to migrate | **Medium**: broad device/OS support, but hard to migrate | **Low–Medium**: often hard/impossible to switch passkey provider or attach passkeys to a different account | **Medium–High**: re-derive on any device; optional advanced export; avoids cloud lock-in |
+| **Sanctions / screening / abuse controls** | **High**: centralized controls (screening/limits), can increase custody-like perception | **High**: centralized controls (screening/limits), can increase custody-like perception | **Medium**: on-chain allowlists possible; depends on whether users can transact outside the app | **Medium–High**: screen at initiation; smart-account rules can enforce on-chain limits/allowlists while remaining non-custodial |
+
+\* For smart-account approaches, availability/DoS risk can be reduced with extended on-chain emergency recovery functions (e.g., locktimes, guardians/social recovery).
+
+Key takeaways:
+
+- **MPC-based approaches** can feel seamless, but introduce higher custody/regulatory risk (signers can be viewed as custodians) and higher costs at consumer scale.
+- **Passkey-based smart accounts** reduce custody risk, but often trade off portability (provider/device lock-in) and can inherit ecosystem availability/DoS risks.
+- **Unforgettable** avoids storing end keys (keys are derived on demand) and aims for low custody risk, with optional on-chain safety nets (e.g., guardians/timelocks) where needed.
 
 ## Tech overview
 
@@ -76,30 +107,6 @@ Example of Unforgettable flow is shown in the demo below:
 ## Subscription
 
 The subscription is activated at setup, but the fee can be only charged when you actually invoke the recovery flow.
-
-## Comparison with other wallet approaches
-
-Unforgettable fits into the “smart account + just‑in‑time key derivation” category. Below is a practical comparison against common alternatives.
-
-| Dimension | MPC wallet | Smart account + MPC signer | Smart account + passkeys (WebAuthn) | Unforgettable (smart account + fuzzy extractor) |
-|---|---|---|---|---|
-| **What it is** | Key is split into shares; multiple parties/devices must co-sign each transaction | Funds in a smart-contract wallet; multiple parties/devices must co-sign each transaction | Funds in a smart-contract wallet; authorization uses passkeys/WebAuthn-derived signing keys | Funds in a smart-contract wallet; signing key is derived on demand from biometrics/visual keys/location via fuzzy extractor (JIT keys) |
-| **Self-custody / regulatory risk** | **Medium–High** (signers can be seen as custodians) | **Medium–High** (signers can be seen as custodians) | **Low–Medium** (platform doesn’t control the key, but “soft custody” concerns may exist depending on the passkey provider model) | **Low** (user is the end key owner; platform never holds end keys/shares, only helper + policy metadata) |
-| **Key storage & risk** | **Medium–High**: shares stored on MPC provider infra (often in TEE). Risks: collusion, DoS | **Medium–High**: shares stored on MPC provider infra (often in TEE). Risks: collusion, DoS | **Low–Medium**: key stored on device; optionally synced. Risks: device loss/theft; ecosystem DoS/collusion if synced | **Low–Medium**: no end-key storage (JIT). Risks: spoofing attempts; platform availability/DoS |
-| **Recovery** | Depends on MPC providers | Depends on MPC providers | Device control (for local keys); if cloud-synced, relies on provider liveness | Relies on deterministic re-derivation; optional on-chain guardians/timelocks as safety nets |
-| **Cost assumptions** | Platform fee + per-signing/per-wallet costs; expensive at consumer scale | Platform fee + per-signing/per-wallet costs; expensive at consumer scale | Smart-account gas + bundler/paymaster ops; generally cheaper than MPC | Smart-account gas + bundler/paymaster ops + small helper-data storage; generally cheaper than MPC |
-| **Interoperability** | **High**: most dApps work out of the box | **Medium**: needs bundler/paymaster; usually per-chain deployments/modules | **Medium**: needs bundler/paymaster; usually per-chain deployments/modules | **High**: can produce standard keys/signatures and/or use smart-account policies; easier multi-chain (smart-account deployments still need bundler/paymaster infra) |
-| **Portability** | **Medium**: broad device/OS support, but hard to migrate | **Medium**: broad device/OS support, but hard to migrate | **Low–Medium**: often hard/impossible to switch passkey provider or attach passkeys to a different account | **Medium–High**: re-derive on any device; optional advanced export; avoids cloud lock-in |
-| **Sanctions / screening / abuse controls** | **High**: centralized controls (screening/limits), can increase custody-like perception | **High**: centralized controls (screening/limits), can increase custody-like perception | **Medium**: on-chain allowlists possible; depends on whether users can transact outside the app | **Medium–High**: screen at initiation; smart-account rules can enforce on-chain limits/allowlists while remaining non-custodial |
-
-\* For smart-account approaches, availability/DoS risk can be reduced with extended on-chain emergency recovery functions (e.g., locktimes, guardians/social recovery).
-
-Key takeaways:
-
-- **MPC-based approaches** can feel seamless, but introduce higher custody/regulatory risk (signers can be viewed as custodians) and higher costs at consumer scale.
-- **Passkey-based smart accounts** reduce custody risk, but often trade off portability (provider/device lock-in) and can inherit ecosystem availability/DoS risks.
-- **Unforgettable** avoids storing end keys (keys are derived on demand) and aims for low custody risk, with optional on-chain safety nets (e.g., guardians/timelocks) where needed.
-
 
 ## Conclusion
 
