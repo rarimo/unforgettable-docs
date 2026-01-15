@@ -6,9 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-- Updated the general overview;
-
+## [3.0.0] - 2026-01-15
 ### Added
 - Embedded wallets docs:
   - Overview
@@ -17,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Passkeys
   - Policy Engine
   - Recovery
+
+### Changed
+- Updated the general overview;
 
 ## [2.1.0] - 2026-01-05
 ### Added
@@ -60,7 +61,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added doc for wallet devs;
 
 
-[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/2.1.0...HEAD
+[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/3.0.0...HEAD
+[3.0.0]: https://github.com/rarimo/unforgettable-docs/compare/2.1.0...3.0.0
 [2.1.0]: https://github.com/rarimo/unforgettable-docs/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/rarimo/unforgettable-docs/compare/1.0.4...2.0.0
 [1.0.4]: https://github.com/rarimo/unforgettable-docs/compare/1.0.3...1.0.4
