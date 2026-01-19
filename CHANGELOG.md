@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+- Disabled "last update time" display in documentation pages;
+
 ## [3.0.0] - 2026-01-15
 ### Added
 - Embedded wallets docs:
