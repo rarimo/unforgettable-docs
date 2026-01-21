@@ -1,14 +1,110 @@
 ---
-title: "Smart contracts reference"
-slug: /smart-contracts-reference
-sidebar_label: Smart contracts reference
-description: "Learn about smart contracts powering Unforgettable Recovery."
-draft: true
+title: Smart contract reference
+description: Contracts powering Unforgettable vault/account recovery, subscriptions, and cross-chain subscription sync.
 ---
 
-import OutLink from "@site/src/components/OutLink";
-import IdealImage from '@site/src/components/IdealImage';
+import OutLink from '@site/src/components/OutLink'
 
-# Smart contracts reference
+## Overview
 
-TBD
+Unforgettable Contracts is a set of Solidity smart contracts that power account and vault access recovery for the Unforgettable protocol. The system supports subscription-gated recovery methods and cross-chain synchronization of subscription state, enabling the same recovery guarantees to apply across multiple networks. Contracts are grouped by functional domains, such as accounts, recovery, subscriptions, cross-chain messaging, and vaults, to make it easy to navigate the architecture and identify relevant integration and extension points.
+
+## Deployed addresses
+
+### Ethereum Mainnet
+
+| Contract | Address |
+|---|---|
+| <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/VaultFactory.sol">`VaultFactory`</OutLink> | `0x54C239E71af51Fc141A2BDf5469dc992b7256AD8` |
+| <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/VaultSubscriptionManager.sol">`VaultSubscriptionManager`</OutLink> | `0xdc8838478f49C212e68fD8b538B90c81D0f47621` |
+
+:::note
+`VaultFactory` is deployed deterministically (via CREATE3 / CreateX in this repo’s deployment approach), so **its address is intended to match across supported chains**. Other contracts may be chain-specific.
+:::
+
+### Deterministic deployment salt
+
+To lock deterministic deployment to a specific protocol deployer, the deployment uses:
+
+- **Salt:** `0x00D37f35Ec44ecC4e2F54de1FA3208F73d632E5900004e6f6e204f626c697461`
+- **Protocol deployer address:** `0x00D37f35Ec44ecC4e2F54de1FA3208F73d632E59`
+
+---
+
+## Contract map
+
+### Accounts
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/accounts/Account.sol">`Account`</OutLink> — Minimal EIP-7702 smart account integrating recovery.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/accounts/AccountSubscriptionManager.sol">`AccountSubscriptionManager`</OutLink> — Subscription manager scoped to a smart account.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/accounts/Base7702AccountRecovery.sol">`Base7702AccountRecovery`</OutLink> — Base recovery logic for EIP-7702 accounts.
+
+---
+
+### Recovery core
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/RecoveryManager.sol">`RecoveryManager`</OutLink> — Central recovery coordinator (strategy-based).
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/strategies/ARecoveryStrategy.sol">`ARecoveryStrategy`</OutLink> — Abstract strategy interface / base implementation.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/strategies/SignatureRecoveryStrategy.sol">`SignatureRecoveryStrategy`</OutLink> — EIP-712 signature-based recovery strategy.
+
+---
+
+### Subscription core
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/BaseSubscriptionManager.sol">`BaseSubscriptionManager`</OutLink> — Subscription manager coordinating multiple modules.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/BaseSideChainSubscriptionManager.sol">`BaseSideChainSubscriptionManager`</OutLink> — Base subscription manager for side-chains.
+
+#### Subscription modules
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/BaseSubscriptionModule.sol">`BaseSubscriptionModule`</OutLink> — Base extension hook for subscription logic.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/CrossChainModule.sol">`CrossChainModule`</OutLink> — Cross-chain subscription synchronization module.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/SBTDiscountModule.sol">`SBTDiscountModule`</OutLink> — Discounts based on supported SBT ownership.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/SBTPaymentModule.sol">`SBTPaymentModule`</OutLink> — Subscription payments using SBTs mapped to fixed durations.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/SignatureSubscriptionModule.sol">`SignatureSubscriptionModule`</OutLink> — EIP-712 permit-style subscription extension.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/TokensPaymentModule.sol">`TokensPaymentModule`</OutLink> — Payments in ETH or ERC-20 tokens.
+
+### Cross-chain subscription sync via Wormhole
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/crosschain/SubscriptionsSynchronizer.sol">`SubscriptionsSynchronizer`</OutLink> — Publishes subscription state updates across chains.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/crosschain/SubscriptionsStateReceiver.sol">`SubscriptionsStateReceiver`</OutLink> — Receives and processes cross-chain subscription updates.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/crosschain/SideChainSubscriptionManager.sol">`SideChainSubscriptionManager`</OutLink> — Side-chain manager with cross-chain sync support.
+
+### Helper data
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/helper-data/HelperDataFactory.sol">`HelperDataFactory`</OutLink> — Registration + helper-data part submissions + metadata/subscription tracking.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/helper-data/HelperDataRegistry.sol">`HelperDataRegistry`</OutLink> — Helper-data storage updated via EIP-712 signatures.
+
+### Gnosis Safe integration
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/safe/UnforgettableRecoveryModule.sol">`UnforgettableRecoveryModule`</OutLink> — Safe module enabling recovery by swapping a specified owner.
+
+### Tokens
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/tokens/SignatureSBT.sol">`SignatureSBT`</OutLink> — SBT with signature-based minting.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/tokens/ReservedRMO.sol">`ReservedRMO`</OutLink> — ERC-20 granting each vault a one-time reserved token allocation.
+
+### Vaults
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/Vault.sol">`Vault`</OutLink> — Vault controlled with a master-key EIP-712 signature.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/VaultFactory.sol">`VaultFactory`</OutLink> — Deterministic factory for vaults (incl. registry of unchangeable vault names).
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/VaultSubscriptionManager.sol">`VaultSubscriptionManager`</OutLink> — Subscription manager scoped to a vault.
+
+### Libraries
+
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/libs/EIP712SignatureChecker.sol">`EIP712SignatureChecker`</OutLink> — Wrapper around OpenZeppelin `SignatureChecker` for EIP-712 validation flows.
+- <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/libs/TokensHelper.sol">`TokensHelper`</OutLink> — ETH / ERC-20 transfer helpers.
+
+## Practical integration entrypoints
+
+- **Vault lifecycle:** <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/VaultFactory.sol">`VaultFactory`</OutLink> → <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/Vault.sol">`Vault`</OutLink>
+- **Vault subscriptions:** <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/vaults/VaultSubscriptionManager.sol">`VaultSubscriptionManager`</OutLink> (plus subscription modules where relevant)
+- **Recovery:** <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/RecoveryManager.sol">`RecoveryManager`</OutLink> (configured with one or more strategies)
+- **Smart accounts:** <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/accounts/Account.sol">`Account`</OutLink> + <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/accounts/Base7702AccountRecovery.sol">`Base7702AccountRecovery`</OutLink> + <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/accounts/AccountSubscriptionManager.sol">`AccountSubscriptionManager`</OutLink>
+- **Cross-chain subscriptions:** <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/crosschain/SubscriptionsSynchronizer.sol">`SubscriptionsSynchronizer`</OutLink> + <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/crosschain/SubscriptionsStateReceiver.sol">`SubscriptionsStateReceiver`</OutLink>
+
+## Extension points
+
+- **Add a new recovery method:** implement a new <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/strategies/ARecoveryStrategy.sol">`ARecoveryStrategy`</OutLink> and wire it into <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/RecoveryManager.sol">`RecoveryManager`</OutLink>.
+- **Add a new subscription payment/extension path:** implement <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/BaseSubscriptionModule.sol">`BaseSubscriptionModule`</OutLink> and register it in your subscription manager.
+- **Add cross-chain behaviors:** extend <OutLink href="https://github.com/rarimo/unforgettable-contracts/blob/master/contracts/core/subscription/modules/CrossChainModule.sol">`CrossChainModule`</OutLink> and/or the synchronizer/receiver logic.
+

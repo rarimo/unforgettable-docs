@@ -1,0 +1,33 @@
+---
+title: "What is Unforgettable?"
+slug: /foundations/fuzzy-extractors
+sidebar_label: Fuzzy Extractors
+description: Fuzzy extractors derive wallet keys from biometrics and visual keys, eliminating seed phrases while preserving self-custody.
+---
+
+import OutLink from "@site/src/components/OutLink";
+import IdealImage from '@site/src/components/IdealImage';
+
+# Fuzzy Extractors
+
+Unforgettable relies on a novel cryptographic primitive called *fuzzy extractors*, which convert “noisy” biometric/visual data into a stable, private key that can be reproduced from a close‑enough reading of the same object. Security is layered by combining factors (e.g., face + object) and strengthened further with a password or a proof-of-work challenge.
+
+### Security assumptions
+
+To achieve a 112‑bit security baseline, Unforgettable fuses ≈46 bits of entropy extracted from a face‑plus‑object pair with an additional 66 bits contributed by either a short password alone or a shorter password reinforced by an optional 2¹⁶‑space proof‑of‑work challenge.
+
+| Factor            | Entropy usable today | Notes |
+|-------------------|-----------------------|-------|
+| Face              | ≈14-20 bits             | FAR ≈ 2⁻²⁰–2⁻²¹ |
+| Generic object    | ≈40 bits             | Image distinguishing points |
+| Location          | Up to 40 bits        | 10-meter range accuracy required |
+| Face + object     | ≈54 bits             | Independent sources add up |
+| Password          | ≈49 bits (8 chars) | ~6.12 bits per printable ASCII char |
+| PoW Challenge     | ≈6 bits             | 2⁶ space |
+| **Total**         | ≈112 bits           | ≥112-bit baseline satisfied |
+
+Further improvements are being researched:
+
+- **Model upgrades:** Moving to 512‑D face embeddings and “specific‑object” extractors is expected to yield 40-60 bits per object and ≥ 70 bits from a face + object pair.
+- **Shorter secrets:** With 70 visual bits, the password can drop to 7 random characters, or 5 with the same PoW range, while preserving 112‑bit security.
+- **New modalities:** Voice prints, 3-D scans and other high‑entropy sources are being researched to reduce user effort further.

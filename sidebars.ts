@@ -3,11 +3,6 @@ import { SidebarsConfig } from '@docusaurus/plugin-content-docs'
 const sidebars: SidebarsConfig = {
   sidebar: [
     {
-      type: 'doc',
-      label: 'What is Unforgettable.?',
-      id: 'overview',
-    },
-    {
       type: 'html',
       value: `<div class="menu__splitter"></div>`,
     },
@@ -51,7 +46,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'html',
-      value: `<span class="menu__section-header">SDK</span>`,
+      value: `<span class="menu__section-header">Integration</span>`,
     },
     {
       type: 'doc',
@@ -100,6 +95,11 @@ const sidebars: SidebarsConfig = {
       ],
     },
     {
+      type: 'doc',
+      label: 'Smart Contracts',
+      id: 'smart-contracts',
+    },
+    {
       type: 'link',
       label: 'GitHub',
       href: 'https://github.com/rarimo/unforgettable-sdk',
@@ -108,14 +108,24 @@ const sidebars: SidebarsConfig = {
         rel: 'noopener',
       },
     },
-    {
+
+  {
       type: 'html',
       value: `<div class="menu__splitter"></div>`,
     },
     {
+      type: 'html',
+      value: `<span class="menu__section-header">Foundations</span>`,
+    },
+    {
+      type: 'doc',
+      label: 'Fuzzy Extractors',
+      id: 'foundations/fuzzy-extractors',
+    },
+    {
       type: 'doc',
       label: 'Benchmarks',
-      id: 'benchmarks',
+      id: 'foundations/benchmarks',
     },
     {
       type: 'link',
