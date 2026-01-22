@@ -1,133 +1,58 @@
 ---
+
 title: "Policy Engine"
 description: A declarative rules layer for embedded-wallet actions and recovery configuration.
 sidebar_position: 4
 slug: /embedded-wallets/policy-engine
 ---
 
-The Policy Engine is the rules layer for embedded wallets. It defines *what is allowed*, *when*, and *under which conditions*, so security and recovery logic isn’t scattered across UI code, backend services, and smart contracts.
+The Policy Engine is the rules layer for Embedded Wallets. It defines what actions are allowed, under which conditions, and at what time, so security and recovery logic lives in one place instead of being fragmented across UI code, backend services, and smart contracts.
 
-At a high level, the Policy Engine combines:
+At a high level, the Policy Engine combines two complementary layers:
 
-* **Off-chain decisioning** tied to the user’s root account (limits, step-up rules, cooldowns, audit logs).
-* **On-chain enforcement hooks** that make critical constraints non-bypassable (timelocks, thresholds, hard denies).
-
-## Where the Policy Engine fits
-
-Embedded wallets are built from layered modules with clear responsibilities. The Policy Engine coordinates these layers without performing authentication or signing itself.
-
-### Root identity (app account)
-
-This is the anchor for policy and support:
-
-* User identity and session context
-* Device and risk signals
-* Wallet metadata (enabled chains, creation time)
-* Policy configuration and audit history
-
-The Policy Engine uses this context to apply consistent rules across devices and sessions.
-
-### Authorization (Just-in-Time keys)
-
-This layer handles authentication and signing:
-
-* Biometric capture and liveness
-* Secure local computation
-* Ephemeral key derivation and signing
-* Passkey confirmation
-
-The Policy Engine can *require* these checks, but never executes them.
-
-### Recovery and factor rotation
-
-This layer manages recovery state without holding secrets:
-
-* Passkey replacement
-* Biometric refresh
-* Public metadata and commitments
-
-The Policy Engine controls *when* these actions are allowed and which safeguards apply.
-
-### Smart Account (on-chain)
-
-This is where enforcement becomes verifiable:
-
-* Spending rules and recovery logic
-* Batching and gas sponsorship
-* Transaction simulation and relaying
-
-Critical constraints defined by policy are enforced on-chain and cannot be bypassed.
+* **Off-chain decisioning** tied to the user’s root account—used for limits, step-up requirements, cooldowns, and auditability.
+* **On-chain enforcement hooks** that make critical constraints non-bypassable—such as timelocks, approval thresholds, and hard denies.
 
 ## What the Policy Engine controls
 
-Policies apply to both wallet actions and wallet configuration.
+Policies apply to both day-to-day wallet actions and wallet configuration.
 
 ### Limits and risk controls
 
-* Per-transaction and daily limits
-* New-device or new-session restrictions
-* Chain, token, or contract allowlists
+* Per-transaction and daily spending limits
+* Restrictions for new devices or fresh sessions
+* Chain-, token-, or contract-level allowlists
 
 ### Step-up requirements
 
 * When passkey confirmation is required
-* When higher-assurance checks (such as liveness) are required
-* Extra verification for sensitive recovery actions
+* When higher-assurance checks (for example, liveness) are enforced
+* Additional verification for sensitive recovery operations
 
 ### Recovery configuration
 
-* Timelocks before recovery executes
-* Approval thresholds (for example, guardians)
+* Timelocks before recovery can execute
+* Approval thresholds (for example, guardian-based recovery)
 * Cooldowns, cancellation windows, and validity periods
 
-### Account abstraction behavior
+### Account-abstraction behavior
 
-* When gas sponsorship is allowed
-* What actions can be batched together
-* Safety guardrails for relaying and simulation
+* When gas sponsorship is permitted
+* Which actions may be batched together
+* Safety guardrails for relaying and transaction simulation
 
 ### Operational constraints
 
 * Audit logging and monitoring hooks
 * Expiration and renewal reminders
-* Safe defaults (deny unless explicitly allowed)
-
-## Policy inputs and outputs
-
-### Inputs
-
-The Policy Engine evaluates:
-
-* User identity and session context
-* Device and risk signals
-* Wallet metadata and public state
-* The requested action
-* Results of required confirmations
-
-### Outputs
-
-The Policy Engine returns:
-
-* Allow or deny
-* Required next steps (for example, passkey or liveness)
-* Constraints such as limits, delays, or thresholds
-* Execution mode (gas-sponsored vs user-paid, batched vs single action)
-
-## Why policies are declarative
-
-A declarative policy model provides:
-
-* **Auditability:** one place to inspect security posture and changes
-* **Consistency:** identical rules across platforms and chains
-* **Safer defaults:** deny-by-default, especially early on
-* **Clear separation:** policy, authorization, recovery, and enforcement remain independent
+* Safe-by-default behavior (deny unless explicitly allowed)
 
 ## Core policy primitives
 
-The Policy Engine is built from a small, composable set of concepts:
+Policies are composed from a small, explicit set of building blocks:
 
 * Limits (amounts and time windows)
-* Step-up prompts (passkey, liveness)
+* Step-up prompts (passkeys, liveness)
 * Cooldowns for risky changes
 * Timelocks for delayed recovery
 * Thresholds for multi-party approval
@@ -135,4 +60,4 @@ The Policy Engine is built from a small, composable set of concepts:
 * Scope restrictions (chains, tokens, contracts)
 * Gas sponsorship rules
 
-Together, these primitives define a wallet’s security posture in a way that is consistent, reviewable, and enforceable both off-chain and on-chain.
+This structure keeps policies readable, auditable, and easy to evolve as wallet requirements change.
