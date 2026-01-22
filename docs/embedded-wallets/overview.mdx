@@ -1,47 +1,40 @@
 ---
-title: Embedded Wallets Overview
-description: Seedless, self-custodial smart accounts that live inside your app.
-sidebar_position: 1
+title: Embedded Wallets
+description: Seedless, self-custodial wallets inside your app powered by Just-in-Time (JIT) keys.
 slug: /
 ---
 
-Embedded Wallets let your app provision a user wallet without asking them to store a seed phrase.
-
-The wallet is a smart account (smart-contract wallet) controlled by a key that is derived just in time(JIT) from user-held factors (e.g., biometrics / visual keys) rather than stored long-term. This keeps onboarding fast while preserving a self-custodial security posture.
-
-## When to use embedded wallets
+Unforgettable Embedded Wallets let your app provision a self-custodial user wallet with seamless onboarding and a familiar, app-native experience. They are built on Just-in-Time (JIT) key infrastructure: a user’s private key is deterministically reconstructed on the device from multiple noisy inputs (such as biometrics) only when a signature is required, used to authorize the action, and destroyed immediately afterward.
 
 Use Unforgettable Embedded Wallets when you want:
 
-- **No legal custodial risks.** The user holds their own key; your backend cannot move funds.
-- **Streamlined onboarding** (no seed phrase, no extension install).
-- **Robust recovery mechanisms** that survive real-world failures (lost device, factor drift, etc.).
+- *True self-custody, zero key liability.* Users fully control their wallets; your backend cannot move funds.
+- *Streamlined onboarding.* No seed phrases, no extensions, just a clean, intuitive flow.
+- *Phishing-resistant key management.* Nothing to type or copy, and no keys stored at rest—removing most social-engineering attack vectors.
 
-## What you get
+### How it works
 
-Embedded Wallets are built around a few primitives:
+<iframe
+  width="560"
+  height="315"
+  src="https://www.youtube.com/embed/uZrqQsSihZE"
+  title="YouTube Short - Unforgettable Demo"
+  frameborder="0"
+  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+  allowfullscreen>
+</iframe>
 
-- **Smart account on-chain:** where assets live and where recovery rules can be enforced.
-- **On-device key derivation:** the controlling key is re-derived on demand from user factors.
-- **Passkeys:** a phishing-resistant confirmation layer for sensitive configuration steps.
-- **Policy Engine:** the single source of truth for recovery and signing rules (timelocks, thresholds, required checks).
+Let’s say a user wants to transfer stablecoins from their embedded wallet. The flow looks like this:
 
-## Threat model
+1. The user logs into your app.
+2. Wallet setup or recovery begins.
+3. Multi-step, on-device authentication runs using biometric or visual inputs, during which the key is reconstructed.
+4. The stablecoin transaction is signed.
+5. The key is discarded immediately after use.
 
-Embedded wallets are designed to reduce common failure modes:
+### Additional security layers
 
-- **Phishing / social engineering:** no seed phrase to type, paste, or “verify.”
-- **Backend compromise:** your backend should not be able to sign as the user.
-- **Device loss:** users can regain access from another device by repeating the required factors.
-- **Factor drift/unrecoverable change:** if key derivation cannot reproduce the secret, recovery falls back to pre-configured safety nets (see [Recovery](/embedded-wallets/recovery-overview)).
-
-## Custody model
-
-Embedded wallets are fully non-custodial:
-
-- The user’s controlling key is derived on-device and should not be stored in plaintext or encrypted server-side.
-- On-chain components enforce rules and recovery constraints in a transparent way.
-- Off-chain services add extra convenience, but can't move funds or deny access.
+To further enhance security, Embedded Wallets allow to set up [Passkeys](/embedded-wallets/passkeys/) as a second factor for sensitive actions, and a [Policy Engine](/embedded-wallets/policy-engine/) to enforce custom rules (e.g., transaction limits, geofencing, time-based restrictions).
 
 ## What happens when key derivation fails
 
@@ -49,14 +42,14 @@ Key derivation mechanisms based on noisy inputs (biometrics, visual keys) are ro
 
 When the primary secret becomes unrecoverable, Embedded Wallets rely on preconfigured recovery mechanisms that do not undermine self-custody:
 
-- **Timelocked fallback transfer** (assisted recovery with an inactivity/timelock delay).
-- **Social recovery (guardians)** with threshold approvals and key rotation.
+* **Timelocked fallback transfer** (assisted recovery with an inactivity/timelock delay).
+* **Social recovery (guardians)** with threshold approvals and key rotation.
 
 See [Recovery](/embedded-wallets/recovery-overview) for trade-offs and flows.
 
 ## Next
 
-- [Architecture & Trust Model](/embedded-wallets/architecture)
-- [Smart Account](/embedded-wallets/smart-account)
-- [Passkeys](/embedded-wallets/passkeys)
-- [Policy Engine](/embedded-wallets/policy-engine)
+* [Architecture & Trust Model](/embedded-wallets/architecture)
+* [Smart Account](/embedded-wallets/smart-account)
+* [Passkeys](/embedded-wallets/passkeys)
+* [Policy Engine](/embedded-wallets/policy-engine)
