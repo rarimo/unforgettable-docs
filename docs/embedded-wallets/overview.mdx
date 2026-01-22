@@ -6,11 +6,10 @@ slug: /
 
 Unforgettable Embedded Wallets let your app provision a self-custodial user wallet with seamless onboarding and a familiar, app-native experience. They are built on Just-in-Time (JIT) key infrastructure: a user’s private key is deterministically reconstructed on the device from multiple noisy inputs (such as biometrics) only when a signature is required, used to authorize the action, and destroyed immediately afterward.
 
-Use Unforgettable Embedded Wallets when you want:
-
-- *True self-custody, zero key liability.* Users fully control their wallets; your backend cannot move funds.
-- *Streamlined onboarding.* No seed phrases, no extensions, just a clean, intuitive flow.
-- *Phishing-resistant key management.* Nothing to type or copy, and no keys stored at rest—removing most social-engineering attack vectors.
+The key benefits of Embedded Wallets are:
+- **True self-custody, zero key liability.** Users fully control their wallets; your backend cannot move funds.
+- **Streamlined onboarding.** No seed phrases, no extensions, just a clean, intuitive flow.
+- **Phishing-resistant key management.** Nothing to type or copy, and no keys stored at rest—removing most social-engineering attack vectors.
 
 ### How it works
 
@@ -32,18 +31,15 @@ Let’s say a user wants to transfer stablecoins from their embedded wallet. The
 4. The stablecoin transaction is signed.
 5. The key is discarded immediately after use.
 
-### Additional security layers
+## Additional security layers
 
 To further enhance security, Embedded Wallets allow to set up [Passkeys](/embedded-wallets/passkeys/) as a second factor for sensitive actions, and a [Policy Engine](/embedded-wallets/policy-engine/) to enforce custom rules (e.g., transaction limits, geofencing, time-based restrictions).
 
 ## What happens when key derivation fails
 
-Key derivation mechanisms based on noisy inputs (biometrics, visual keys) are robust to *small* changes but can fail under *large* changes.
+Key derivation mechanisms based on noisy inputs (biometrics, visual keys) are robust to *small* changes but can fail under *large* changes. Unforgettable provides several fallback options to recover access without compromising self-custody.
 
 When the primary secret becomes unrecoverable, Embedded Wallets rely on preconfigured recovery mechanisms that do not undermine self-custody:
-
-* **Timelocked fallback transfer** (assisted recovery with an inactivity/timelock delay).
-* **Social recovery (guardians)** with threshold approvals and key rotation.
 
 See [Recovery](/embedded-wallets/recovery-overview) for trade-offs and flows.
 

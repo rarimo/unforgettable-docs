@@ -4,10 +4,6 @@ const sidebars: SidebarsConfig = {
   sidebar: [
     {
       type: 'html',
-      value: `<div class="menu__splitter"></div>`,
-    },
-    {
-      type: 'html',
       value: `<span class="menu__section-header">Embedded Wallets</span>`,
     },
     {
@@ -27,14 +23,15 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Passkeys',
-      id: 'embedded-wallets/passkeys',
-    },
-    {
-      type: 'doc',
       label: 'Policy Engine',
       id: 'embedded-wallets/policy-engine',
     },
+    {
+      type: 'doc',
+      label: 'Passkeys',
+      id: 'embedded-wallets/passkeys',
+    },
+
     {
       type: 'doc',
       label: 'Recovery',
