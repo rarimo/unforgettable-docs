@@ -5,36 +5,19 @@ sidebar_position: 5
 slug: /embedded-wallets/recovery-overview
 ---
 
-Recovery exists for the scenario where the user cannot reproduce the primary secret used for wallet control. This can happen when key derivation relies on noisy inputs (biometrics/visual keys) and the inputs change beyond what the extractor can tolerate.
+Recovery applies when the user can no longer reproduce the wallet's controlling secret, such as when biometric or visual inputs drift beyond the extractor's tolerance. Even if rare, embedded wallets need a recovery path that preserves self-custody and keeps assets in place.
 
-While key derivation failures are expected to be rare, a robust embedded wallet design includes recovery mechanisms that preserve self-custody.
-
-## Recovery goals
-
-A good recovery mechanism should:
-
-- Restore access without undermining self-custody.
-- Be hard to abuse (by attackers or insiders).
-- Be understandable to end users.
-- Be enforceable (preferably on-chain).
-
-## What recovery does: transfer vs rekey
-
-There are two common recovery outcomes:
-
-1. **Transfer-based recovery:** funds (or control) move to a new destination.
-2. **Rekey-based recovery:** the wallet stays put; only the controlling key is rotated.
+Recovery is implemented through rekeying: the wallet address and on-chain state remain unchanged, control rotates to a new key derived from the user's new embedded wallet, and assets never leave the account. This avoids asset transfers, reduces operational risk, and keeps recovery fully on-chain.
 
 ## Choosing a mechanism
 
 | Mechanism | What changes | Strengths | Trade-offs |
 |---|---|---|---|
-| Timelocked fallback transfer | Funds/control transfer after delay | Works even with zero guardians | Introduces “assisted recovery” ops + compliance surface; funds temporarily leave wallet |
+| Timelocked fallback transfer | Control transfer after delay | Works even with zero guardians | Introduces “assisted recovery” ops + compliance surface; funds temporarily leave wallet |
 | Social recovery (guardians) | Control key rotates | Funds stay in wallet; no single party controls recovery | Coordination risk; guardian compromise/collusion needs mitigation |
 
 In practice, many products support both, using guardians as the primary safety net and timelocked fallback as a last resort.
 
----
 
 ## Option 1: Timelocked fallback transfer (assisted recovery)
 
@@ -66,7 +49,7 @@ sequenceDiagram
   U->>BO: Provide proof
 
   BO->>C: Submit pre-signed tx
-  C->>NW: Transfer funds/control
+  C->>NW: Transfer control
   Note over NW: Recovery completed
 ```
 
@@ -76,8 +59,6 @@ sequenceDiagram
 - The platform cannot execute before the timelock.
 - The user should be able to regenerate/rotate the fallback transaction while they still have access (invalidating older artifacts).
 - This mechanism is subject to policy, legal, and compliance review.
-
----
 
 ## Option 2: Social recovery (guardians)
 
