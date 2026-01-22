@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Disabled "last update time" display in documentation pages;
+- Tweaked documentation structure to improve navigation;
 
 ## [3.0.0] - 2026-01-15
 ### Added
