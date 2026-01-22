@@ -5,6 +5,8 @@ sidebar_position: 2
 slug: /embedded-wallets/architecture
 ---
 
+import IdealImage from '@site/src/components/IdealImage';
+
 This page explains where Embedded Wallet components live, what each part can access, and the trust assumptions you should design around.
 
 ## High-level components
@@ -26,7 +28,6 @@ This page explains where Embedded Wallet components live, what each part can acc
 | Passkeys (WebAuthn credentials) | ✅ (authenticator) | ❌ | ❌ |
 | Timelocked fallback tx (if enabled) | ❌ | ✅ (stored) | ✅ (executed) |
 | Guardian approvals (if enabled) | ❌ | optional | ✅ |
-
 
 ## Next
 

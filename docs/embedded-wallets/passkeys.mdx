@@ -7,8 +7,6 @@ slug: /embedded-wallets/passkeys
 
 Passkeys (WebAuthn/FIDO2) provide a phishing-resistant way to confirm high-impact actions inside embedded wallet flows.
 
-In Embedded Wallets, passkeys are best used as a confirmation module—not as the primary wallet key derivation mechanism.
-
 ## What passkeys are used for
 
 Use passkeys to protect actions that are dangerous if clicked through accidentally or under social pressure:
@@ -17,18 +15,6 @@ Use passkeys to protect actions that are dangerous if clicked through accidental
 - Enabling recovery mechanisms.
 - Rotating recovery parameters (timelock duration, recovery destination, guardian set, thresholds).
 - Generating / re-generating a fallback recovery artifact.
-
-## Why passkeys are separate from key derivation
-
-Passkeys solve a different problem than fuzzy-extractor key derivation:
-
-- Key derivation proves “the user can reproduce the secret.”
-- Passkeys prove "the user is here right now and is explicitly approving this action."
-
-Keeping them separate lets you:
-
-- Require passkey confirmation for configuration changes without changing how wallet signing works.
-- Add additional policy checks (via the Policy Engine) without weakening user confirmation.
 
 ## Example: confirming fallback recovery setup
 
