@@ -31,9 +31,17 @@ Let’s say a user wants to transfer stablecoins from their embedded wallet. The
 4. The stablecoin transaction is signed.
 5. The key is discarded immediately after use.
 
-## Additional security layers
+## Policy controls
 
-To further enhance security, Embedded Wallets allow to set up [Passkeys](/embedded-wallets/passkeys/) as a second factor for sensitive actions, and a [Policy Engine](/embedded-wallets/policy-engine/) to enforce custom rules (e.g., transaction limits, geofencing, time-based restrictions).
+Embedded Wallets use a [Policy Engine](/embedded-wallets/policy-engine/) to define and enforce what actions are allowed, when they can occur, and under which conditions. These rules are applied consistently and cannot be bypassed.
+
+Policy controls include transaction limits, geofencing, time-based restrictions, and recovery constraints.
+
+## Extra conveniences with Passkeys
+
+Embedded Wallets support Passkeys as a convenience feature. Passkeys provide a fast, OS-native confirmation flow, allowing users to approve actions without re-running the full Unforgettable Key derivation each time.
+
+Passkeys do not replace the Unforgettable Key. Any action confirmed with a passkey can always be completed by deriving the Unforgettable Key instead.
 
 ## What happens when key derivation fails
 
@@ -45,5 +53,4 @@ See [Recovery](/embedded-wallets/recovery-overview) for trade-offs and flows.
 
 * [Architecture & Trust Model](/embedded-wallets/architecture)
 * [Smart Account](/embedded-wallets/smart-account)
-* [Passkeys](/embedded-wallets/passkeys)
 * [Policy Engine](/embedded-wallets/policy-engine)

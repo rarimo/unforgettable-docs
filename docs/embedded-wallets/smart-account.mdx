@@ -5,7 +5,7 @@ sidebar_position: 3
 slug: /embedded-wallets/smart-account
 ---
 
-A Smart Account is the on-chain smart-contract wallet used by Unforgettable Embedded Wallets. It holds user assets and enforces programmable rules on-chain and is controlled the Unforgettable Key.
+A Smart Account is the on-chain smart-contract wallet used by Unforgettable Embedded Wallets. It holds user assets and enforces programmable rules on-chain and is controlled by the Unforgettable Key.
 
 The Smart Account supports account abstraction patterns such as gasless (sponsored) transactions, batched execution, and custom validation logic via ERC-4337.
 
@@ -13,18 +13,11 @@ The Smart Account supports account abstraction patterns such as gasless (sponsor
 
 At a high level, an action is executed only when all required checks pass:
 
-1. **Unforgettable Key** authorizes the action (user’s primary control).
-2. **Policy Engine** approves it (rules, limits, recovery constraints).
-3. **Passkey confirmation** is required for specific high-impact configuration steps.
+1. Unforgettable Key authorizes the action (user’s primary control). Authorization can happen by deriving the key on demand, or (if enabled) by using a passkey as a fast confirmation path without re-running the full derivation flow.
+2. Policy Engine approves it (rules, limits, recovery constraints).
 
-```mermaid
-flowchart LR
-  U[User] --> K[Unforgettable Key]
-  K --> SA[Smart Account]
+## Passkeys
 
-  SA --> PE[Policy Engine Contract]
-  PE --> SA
+Smart Accounts support passkeys (WebAuthn/FIDO2) as a convenience for confirming actions. A passkey enables fast, OS-native approval on a trusted device, avoiding repeated Unforgettable Key derivation for common flows such as small transfers.
 
-  U --> PK[WebAuthn Passkey]
-  PK -. confirms .-> SA
-```
+Passkeys never replace the Unforgettable Key: they are only a shortcut for confirmation. Any action approved with a passkey can always be completed by deriving the Unforgettable Key instead, which remains the primary authority. If a passkey is unavailable, the user proceeds via Unforgettable Key derivation without loss of functionality.

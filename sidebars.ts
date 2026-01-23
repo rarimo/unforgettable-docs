@@ -28,12 +28,6 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'doc',
-      label: 'Passkeys',
-      id: 'embedded-wallets/passkeys',
-    },
-
-    {
-      type: 'doc',
       label: 'Recovery',
       id: 'embedded-wallets/recovery',
     },

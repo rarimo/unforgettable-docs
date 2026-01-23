@@ -20,12 +20,11 @@ Policies apply to both day-to-day wallet actions and wallet configuration.
 ### Limits and risk controls
 
 * Per-transaction and daily spending limits
-* Restrictions for new devices or fresh sessions
 * Chain-, token-, or contract-level allowlists
+* When a passkey is acceptable vs full key derivation
 
 ### Step-up requirements
 
-* When passkey confirmation is required
 * When higher-assurance checks (for example, liveness) are enforced
 * Additional verification for sensitive recovery operations
 
@@ -52,7 +51,7 @@ Policies apply to both day-to-day wallet actions and wallet configuration.
 Policies are composed from a small, explicit set of building blocks:
 
 * Limits (amounts and time windows)
-* Step-up prompts (passkeys, liveness)
+* Step-up prompts (liveness)
 * Cooldowns for risky changes
 * Timelocks for delayed recovery
 * Thresholds for multi-party approval

@@ -11,11 +11,12 @@ This page explains where Embedded Wallet components live, what each part can acc
 
 ## High-level components
 
-- **User device (client):** runs factor capture + key derivation and signs user-authorized actions.
-- **Smart account (on-chain):** holds funds and enforces spending policies and recovery rules.
-- **App backend (optional):** coordination, notifications, policy evaluation, storage of *recovery artifacts* (never plaintext keys).
-- **Passkeys:** a separate user-confirmation system (WebAuthn) for sensitive actions.
-- **Policy Engine:** the rules layer that defines allowed actions and recovery configuration.
+
+- User device (client): runs factor capture + key derivation and signs user-authorized actions.
+- Smart account (on-chain): holds funds and enforces spending policies and recovery rules.
+- Passkey (optional, client-side): a WebAuthn/FIDO2 Passkey can be configured as a fast confirmation path so the user can approve actions without re-running the full Unforgettable Key derivation flow each time.
+- App backend (optional): coordination, notifications, policy evaluation, storage of recovery artifacts (never plaintext keys).
+- Policy Engine: the rules layer that defines allowed actions and recovery configuration.
 
 ## Data placement: what lives where
 
@@ -25,13 +26,12 @@ This page explains where Embedded Wallet components live, what each part can acc
 | Derived controlling key (plaintext) | ✅ (ephemeral) | ❌ | ❌ |
 | Smart account code + state | ❌ | ❌ | ✅ |
 | Recovery configuration (timelocks, thresholds) | ✅ (as UI/config) | ✅ (as config) | ✅ (as enforced rules) |
-| Passkeys (WebAuthn credentials) | ✅ (authenticator) | ❌ | ❌ |
+| Passkeys (if enabled) | ✅ (authenticator) | ❌ | ❌ |
 | Timelocked fallback tx (if enabled) | ❌ | ✅ (stored) | ✅ (executed) |
 | Guardian approvals (if enabled) | ❌ | optional | ✅ |
 
 ## Next
 
 - [Smart Account](/embedded-wallets/smart-account)
-- [Passkeys](/embedded-wallets/passkeys)
 - [Policy Engine](/embedded-wallets/policy-engine)
 - [Recovery](/embedded-wallets/recovery-overview)

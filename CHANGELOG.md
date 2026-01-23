@@ -9,6 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Disabled "last update time" display in documentation pages;
 - Tweaked documentation structure to improve navigation;
+- Rewritten passkeys related docs to better reflect their role as a convenience feature rather than a core component.
+
+### Removed
+- Embedded Wallets/Passkeys page;
 
 ## [3.0.0] - 2026-01-15
 ### Added
