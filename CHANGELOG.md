@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.0.0] - 2026-01-23
 ### Changed
 - Disabled "last update time" display in documentation pages;
 - Tweaked documentation structure to improve navigation;
@@ -69,7 +70,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Added doc for wallet devs;
 
 
-[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/3.0.0...HEAD
+[Unreleased]: https://github.com/rarimo/unforgettable-docs/compare/4.0.0...HEAD
+[4.0.0]: https://github.com/rarimo/unforgettable-docs/compare/3.0.0...4.0.0
 [3.0.0]: https://github.com/rarimo/unforgettable-docs/compare/2.1.0...3.0.0
 [2.1.0]: https://github.com/rarimo/unforgettable-docs/compare/2.0.0...2.1.0
 [2.0.0]: https://github.com/rarimo/unforgettable-docs/compare/1.0.4...2.0.0
